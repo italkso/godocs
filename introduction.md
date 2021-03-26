@@ -1,4 +1,4 @@
-# Introduce
+# introduction to GO
 
 ## Install
 [Download](https://golang.google.cn/dl/) the Go installer and install Go. Check the version of Go using command `go version`. If you need help, use `go help`:
