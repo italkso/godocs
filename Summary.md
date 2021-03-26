@@ -13,8 +13,7 @@
 
 - **Semicolons**
 
-  Idiomatic Go programs have semicolons only in places such as for loop clauses, to     
-  separate the initializer, condition, and continuation elements.
+  Idiomatic Go programs have semicolons only in places such as for loop clauses, to separate the initializer, condition, and continuation elements.
   
 - **Control structures**
   - if
