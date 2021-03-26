@@ -1,7 +1,7 @@
 # Introduce
 
 ## Install
-Download the Go installer and install Go. Check the version of Go using command `go version`. If you need help, use `go help`:
+[Download](https://golang.google.cn/dl/) the Go installer and install Go. Check the version of Go using command `go version`. If you need help, use `go help`:
 ```bash
 go verson
 go help
