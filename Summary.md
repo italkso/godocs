@@ -1,22 +1,22 @@
 # Summary of Go
 
 ## Basic
-- Commentary
+- **Commentary**
   - C-style `/* */` block comments : package
   - C++-style `//` line comments : simple package
 
-- Names
+- **Names**
   - Package names : lower case, single-word, short, concise, evocative
   - Getters / Setter : Owner / SetOwner
   - Interface names : Reader, Writer, Formatter, CloseNotifier etc
   - Multiword names : MixedCaps or mixedCaps
 
-- Semicolons
+- **Semicolons**
 
   Idiomatic Go programs have semicolons only in places such as for loop clauses, to     
   separate the initializer, condition, and continuation elements.
   
-- Control structures
+- **Control structures**
   - if
     ```go
     if x > 0 {
