@@ -5,5 +5,5 @@ A note about Go
 - [The Go Programming Language](https://golang.google.cn/)
 
 ## Notes
-- [Install and code](introduce.md)
+- [Install and code](introduction.md)
 
