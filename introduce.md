@@ -25,4 +25,4 @@ go run .
 ```
 
 ***Reference***
-<https://golang.google.cn/doc/tutorial/getting-started>
+- <https://golang.google.cn/doc/tutorial/getting-started>
