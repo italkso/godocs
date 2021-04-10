@@ -1,5 +1,13 @@
 ## FFmpeg
 
+怎么使用命名行更改视频文件的格式呢？使用类似下面这样的命令即可。
+
+```bash
+ffmpeg -i dino.mov -vcodec libx264 -preset fast -crf 23 -y -acodec copy dino.mp4
+```
+
+这里就要说到 FFmpeg 了。
+
 FFmpeg 包含：命令行工具(ffmpeg、 ffprobe、ffplay)和库（libavformat、 libavcodec、libavfilter …）。
 
 - libavformat：读写容器格式(AVI, MKV, MP4, …)

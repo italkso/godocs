@@ -1,4 +1,6 @@
-#### struct
+# Coding in Swift
+
+## struct
 
 ```swift
 struct StructName {
@@ -18,7 +20,7 @@ struct StructName {
 }
 ```
 
-#### enum
+## enum
 
 ```swift
 enum Optional {
@@ -33,7 +35,7 @@ enum CompassPoint {
 }
 ```
 
-#### class
+## class
 
 ```swift
 class SomeBaseClass {
@@ -45,7 +47,7 @@ class SomeSubclass: SomeSuperclass {
 }
 ```
 
-#### extension
+## extension
 
 ```swift
 extension SomeType {
@@ -65,13 +67,90 @@ extension Double {
 }
 ```
 
-#### protocal
+## protocol
 
 ```swift
+protocol MyProtocol {
+    var name: String { get }
+    
+    init(name:String)
+}
 
+struct FirstStruct: MyProtocol {
+    var name: String
+    init(name:String) {
+        self.name = name
+    }// You can omit these codes in structure because of its default initializer
+}
+
+struct SecondStruct {
+    var name: String
+}
+
+extension SecondStruct: MyProtocol {
+    //	Some Code
+}
+
+class ClassName: SuperClass, MyProtocol {
+    // Defination of Class
+    // Implementation of ProtocolName
+}
 ```
 
+#### Equatable, Comparable, Hashable, Identifiable, Codable
 
+```swift
+//  Equatable, Comparable, Hashable
+struct Birthday: Equatable, Comparable, Hashable {
+    let year: Int
+    let month: Int
+    let day: Int
+    
+    static func < (lhs: Birthday, rhs: Birthday) -> Bool {
+        if lhs.year != rhs.year {
+            return lhs.year < rhs.year
+        } else if lhs.month != rhs.month {
+            return lhs.month < rhs.month
+        } else {
+            return lhs.day < rhs.day
+        }
+    }
+}
+
+//  Identifiable, Codable
+struct Person: Equatable, Identifiable, Codable {
+    var name: String
+    lazy var birthday = Birthday(year: 0, month: 0, day: 0)
+    var id = UUID()
+    
+    
+    static func ==(lhs: Person, rhs:Person) -> Bool {
+        return lhs.name == rhs.name
+    }
+}
+
+var personOne = Person(name: "Jobs")
+personOne.birthday = Birthday(year: 1955, month: 2, day: 24)
+var personTwo = Person(name: "Turing")
+personTwo.birthday = Birthday(year: 1912, month: 6, day: 23)
+
+if personOne == personTwo {
+    print("They are the same person.")
+} else {
+    print("They are different.")
+}
+
+if personOne.birthday > personTwo.birthday {
+    print("Jobs was younger than Turing.")
+} else if personOne.birthday == personTwo.birthday {
+    print("They were born in the same day.")
+} else {
+    print("Jobs was older than Turing.")
+}
+
+// Hashable
+let birthdays = [personOne.birthday: personOne, personTwo.birthday: personTwo]
+```
 
 
 

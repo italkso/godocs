@@ -1,10 +1,10 @@
 # xdocs
 
-关于C/C++/Rust/Go，Swift， JavaScript,  HTML5, CSS3等编程/标记语言以及常用开发工具的简单总结(**仅供学习**)。
+关于C/C++/Rust/Go，Swift， JavaScript,  HTML5, CSS3等编程/标记语言的简要总结(**仅供学习**)。
 
 ## 编程语言
 
-- Swift
+- [Swift](swift/swift_zh.md)
 - [Rust](rust/rust.md)
 - [Go](golang/golang.md)
 
@@ -16,7 +16,7 @@
 
 ### iOS
 
-Swift，Xcode，Dependency，Style
+[Swift 中文版](swift/swift_zh.md)，[Code](swift/code.md)，Xcode，Dependency，Style
 
 ### Android
 
@@ -32,4 +32,4 @@ HTML5，CSS3，ES6，DOM，BOM，React，Vue...
 
 ## 贡献
 
-欢迎指正、添加文档或增加示例。
+欢迎指正、添加文档或增加新的示例。

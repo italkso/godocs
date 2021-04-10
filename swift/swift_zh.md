@@ -127,6 +127,8 @@ public func print(_ items: Any..., separator: String = " ", terminator: String =
 
 - `=== `和`!==`
 
+  判断运算符两边的指针是否相同，即判定两个 instance 是不是同一个。
+
 - **圆括号（Parentheses**）
 
   在不需要圆括号时使用圆括号，可以提高复杂表达式的可读性。
@@ -157,6 +159,10 @@ public func print(_ items: Any..., separator: String = " ", terminator: String =
 
 ### 类型
 
+因为存储空间总是有限的，计算机所作的计算也只是近似计算，所有需要类型这个概念。
+
+按照存储性质类型划分，可以分为值类型与引用类型。基本类型是指编程语言直接提供的类型，而enum、class、struct等是自定义类型。
+
 | 类型             | 用途                               | 关键字（语法）                    | 备注     |
 | ---------------- | ---------------------------------- | --------------------------------- | -------- |
 | 基本类型         | 最基本的数据类型                   | `Int`、`Double`、`Bool`、`String` | 值类型   |
@@ -170,7 +176,15 @@ public func print(_ items: Any..., separator: String = " ", terminator: String =
 
 #### 强类型语言
 
-Swift 是**强类型**语言 （strongly typed language），要么直接完成初始化，Swift 会根据内容推断常量或变量的类型，即**类型推断**（Type Inference）；要么明确明确标出常量或变量的类型，即**类型注解**（Type Annotations）。**类型转换**：如使用`String(42)`将 `Int 42` 转换为 `String`。
+Swift 是强类型语言 （strongly typed language），要么直接完成初始化，Swift 会根据内容推断常量或变量的类型，即类型推断（Type Inference）；要么明确明确标出常量或变量的类型，即类型注解（Type Annotations）。使用`String(42)`将 `Int 42` 转换为 `String`呢，就叫做类型转换（Type Casting）。你还可以适度使用`typealias`关键字给基础类型或者更复杂的类型起一个别名，比如`typealias name = String`。
+
+#### 值类型和引用类型
+
+硬盘容量大，可以永久存储（ Permanent Storage）信息。而内存空间有限，仅被用来临时存放（Temporary Storage）正在运行的应用。
+
+Int、Double、Bool、Enum、Struct、Array、Dictionary等都是值类型（Value Type），它们直接将信息存储在内存的存储单元中，这些类型的常量或变量所指代的就是内存中的信息本身。
+
+Class是属于引用类型（Reference Type），引用类型的变量存储的是内存中值所对应的内存地址，即指针（Pointer）。
 
 #### 基本类型
 
@@ -371,7 +385,31 @@ reversedChars = chars.sorted { $0 > $1}
 
 
 
-## 4. 结构
+## 4. 结构、类和 OOP
+
+### 面向对象编程OOP
+
+ 面向对象编程（Object-oriented programming，OOP)就是「**整理归类**」，即将待用物品归类，并根据类别赋予不同的功能和属性。OOP 的实质是**间接（indirection）**技术。
+
+**抽象（Abstraction）**、**封装 （Encapsulation）**、**继承 （Inheritance）**、**多态 （Polymorphism）**是OOP 的四个重要属性。
+
+Swift 中，类 class 与结构 struct 都用来创建自定义类型，都具有「属性、初始化器、方法」。关键字不同只是两者在语法上的区别。有兴趣可以参考 CS193P 课程中关于结构和类的比较。
+
+struct 和 class 的核心差异是：
+
+- struct 是值类型，而 class 是引用类型
+
+  在存储逻辑上的差异。
+
+- struct 只支持一个层级，class 支持创建多个层级的父子关系
+
+  class 支持继承。
+
+- struct 自带默认的初始化器，而 class 必须写明初始化器 
+
+  如果你不提供初始化器，编译会报错，错误信息类似`Class 'MyClass' has no initializers`。
+
+对于 Apple 官方框架来说，适用于反复使用的框架一般定义为 class，以减少重复占用过多内存。而不需要继承、不适合反复使用的实体常被定义为 struct。Apple 官方文档建议，当创建新的自定义类别时，首先定义为 struct。只有你需要用到 class 继承的特性，或者是作为引用类型的特性时，再将关键字更换为 class。
 
 ### 结构
 
@@ -575,6 +613,36 @@ someResolution.printInfo()
 
 一般Swift 会自动提供两个初始化器的版本，一种将默认值考虑进去，只需开发者提供剩余参数即可，如 `init(name: String)`；另一种不考虑默认值，要求提供所有参数，如 `init(name: String, livesRemaining: Int, currentHealth: Int)`。
 
+
+
+### 类
+
+使用**类（Class）**可以实现上述 OOP 的四个属性。
+
+#### 继承
+
+> A class ( subclass ) can *inherit* methods, properties, and other characteristics from another class  ( superclass ). 
+
+```swift
+class SomeBaseClass {
+    // Definition of base class 
+}
+
+class SomeSubclass: SomeSuperclass {
+    // Definition of subclass
+}
+```
+
+- 继承使用冒号语法，即**`SubClass: SuperClass`**。
+- 如果向子类添加的内容已在父类中存在，使用关键字 **override **，表示以子类覆盖后的内容为准。
+- 使用关键字 **super** 可以直接调用父类实体，如**`super.init()`**。你也可以在子类中完整地写出对初始化器中所有变量的赋值，但这样比较麻烦。
+
+#### 多态
+
+- **处理多种子类**是OOP 中多态的体现
+
+
+
 ## 5. 可选类型和枚举
 
 ```swift
@@ -599,72 +667,86 @@ print("The remembered direction is \(rememberedDirection)")
 
 除了单独使用外，你也可以将枚举与 switch 语句搭配使用，用于对枚举中不同类型的事务做区别处理。
 
-## 6. 类和OOP
-
-### 面向对象编程
-
- 面向对象编程（Object-oriented programming，OOP)就是「**整理归类**」，即将待用物品归类，并根据类别赋予不同的功能和属性。
-
-OOP 的实质是**间接（indirection）**技术。**抽象（Abstraction）**、**封装 （Encapsulation）**、**继承 （Inheritance）**、**多态 （Polymorphism）**是OOP 的四个重要属性。
-
-- 抽象
-- 封装：信息隐藏
-- 继承：子类（subclass）可以继承父类（superclass）的属性与方法。
-- 多态：
-
-### 类
-
-#### 结构和类的比较
-
-Swift 中，类 class 与结构 struct 都用来创建自定义类型，都具有「属性、初始化器、方法」。关键字不同只是两者在语法上的区别。有兴趣可以参考 CS193P 课程中关于结构和类的比较。
-
-struct 和 class 的核心差异是：
-
-- struct 是值类型，而 class 是引用类型
-
-  在内存中的存储方式不同。
-
-- struct 只支持一个层级，class 支持创建多个层级的父子关系
-
-  class 支持继承。
-
-- struct 自带默认的初始化器，而 class 必须写明初始化器 
-
-  如果你不提供初始化器，编译会报错，错误信息类似`Class 'MyClass' has no initializers`。
-
-使用**类（Class）**可以实现上述 OOP 的四个属性。
-
-#### 继承
-
-> A class ( subclass ) can *inherit* methods, properties, and other characteristics from another class  ( superclass ). 
-
-```swift
-class SomeBaseClass {
-    // Definition of base class 
-}
-
-class SomeSubclass: SomeSuperclass {
-    // Definition of subclass
-}
-```
-
-- 继承使用冒号语法，即**`SubClass: SuperClass`**。
-- 如果向子类添加的内容已在父类中存在，使用关键字 **override **，表示以子类覆盖后的内容为准。
-- 使用关键字 **super** 可以直接调用父类实体，如**`super.init()`**。你也可以在子类中完整地写出对初始化器中所有变量的赋值，但这样比较麻烦。
-
-**多态**
-
-- **处理多种子类**是OOP 中多态的体现
 
 
+## 6. 协议与 POP
 
-## 7. 协议
+### 协议
 
 > A ***protocol*** defines a blueprint of methods, properties, and  other requirements that suit a particular task or piece of  functionality. The protocol can then be *adopted* by a class, structure, or enumeration to provide an actual implementation of those requirements. 
 
+```swift
+protocol MyProtocol {
+    var name: String { get }
+    
+    init(name:String)
+}
 
+struct FirstStruct: MyProtocol {
+    var name: String
+    init(name:String) {
+        self.name = name
+    }// You can omit these codes in structure because of its default initializer
+}
 
-## 8. 扩展
+struct SecondStruct {
+    var name: String
+}
+
+extension SecondStruct: MyProtocol {
+    //	Some Code
+}
+
+class ClassName: SuperClass, MyProtocol {
+    // Defination of Class
+    // Implementation of ProtocolName
+}
+```
+
+协议是规则，遵守协议的结构、类或枚举需要实现协议规定的功能。遵守协议可以写在 结构、类或枚举中，也可以用扩展来写。
+
+[面向协议编程（Protocol Oriented Programming，POP）](https://developer.apple.com/videos/play/wwdc2015/408/)是为了代码复用，即整理项目中的 struct、class、enum等代码，提取逻辑层面的内容后将这些能够复用的部分写出协议。因此，protocol 中的属性、方法及初始化器都有其特殊之处。
+
+- protocol 中的**属性**关键词 `var`，只读`{ get }`表示属性的值允许被 instance 读取， 可读可写`{ get set }属性的值可以被实体 instance 读取或变更。
+- protocol 中的**初始化器**及**方法**不包含具体实现。
+
+### 常见的协议类型
+
+Equatable 协议和 Comparable 协议用于比较、Hashable 协议和 Identifiable 协议用于识别、Codable 协议用于存取。
+
+- **Equatable**
+
+  [Equatable 协议](https://developer.apple.com/documentation/swift/equatable) 用于判断两个「自定义类型」的Instance 的值是否相等(comparasion for value equality)。所有基础类型（ String、Double、Int、Array 等）都默认遵守 Equatable 协议。
+
+  当自定义类型中不只基础类型时，需要写上类方法 `static func == (Self, Self) -> Bool` ，因为这是实现Equatable 协议要求必须（`Required`）提供的。
+
+- **Comparable**
+
+  [Comparable 协议](https://developer.apple.com/documentation/swift/comparable) 用于判断先后问题，遵守了该协议的类型可以使用关系运算符进行比较。
+
+- **Hashable**
+
+  **哈希 （Hash）** 是指将现有的数据结构通过一定的运算转化为一个随机的、不可重复的、独特的值，这个值就叫哈希值，是一个整数。Swift 提供了哈希值运算，开发者通过添加`: Hashable`只需要遵守 [Hashable 协议](https://developer.apple.com/documentation/swift/hashable/)即可。Hashable 协议继承自 Equatable 协议。
+
+  结构 struct 的所有**存储属性**（stored properties）和枚举 enum 的所有**关联值（**associated values）都必须遵守 Hashable 协议。
+
+- **Identifiable**
+
+  [Identifiable 协议](https://developer.apple.com/documentation/swift/identifiable/) 要求遵守该协议的必须添加一个名为 id 的属性，该属性必须包含一个可哈希的数值，名为 id。Swift 提供的 `UUID()`函数可以用来生成唯一的 ID ，用法是`var id = UUID()`。
+
+  Identifiable 协议还是许多 SwiftUI 视图背后的前置数据条件，SwiftUI 会根据这个独特的 id 来判断视图的复用。
+
+- **Codable**
+
+  [Codable 协议](https://developer.apple.com/documentation/swift/codable/) 的声明如下，Codable 是 Encodable 和 Decodable 协议的类型别名，遵守Codable 协议的数据支持存取。**编码** （Encode）就是将内存中临时存储的信息转化成硬盘里永久存储的信息，**解码**（ Decode）则是将硬盘里的信息读入内存。
+
+  ```swift
+  typealias Codable = Decodable & Encodable
+  ```
+
+  
+
+## 7. 扩展
 
 > *Extensions* add new functionality to an existing class, structure, enumeration, or protocol type.
 
@@ -695,50 +777,63 @@ extension Double {
 
 
 
-## 9. 多线程
+## 8. CPU、多线程与 GCD
 
-### Dispatch
+概念：线程（Threads）、队列（Queues）、闭包（Cloures）、主队列（Main Queue）：系统使用单个线程来处理主队列中的所有代码块。 因此，它也可以用于同步。后台队列（Background Queues）。
 
-GCD (Grand Central Dispatch，Dispatch 框架)，是对Grand Central Terminal的引用，作用是通过将工作提交由系统管理的调度队列，在多核硬件上同时执行代码。
+````Swift
+// iOS 异步编程中常用(创建必须张贴所有UI代码的队列)
+DispatchQueue.main.async {
+	// 主队列
+}
 
-GCD基于 FIFO 和线程池，实现任务的并行执行。
+// 创建具有某种优先级的非 UI 队列
+DispatchQueue.global(qos:.background).async {
+    // 执行复杂任务
+}
+````
+
+**GCD (Grand Central Dispatch，中央调度系统)**是对Grand Central Terminal的引用，作用是通过将工作提交由系统管理的调度队列，在多核硬件上同时执行代码。
+
+一般GCD 会让所有代码在按其编写的先后**顺序 （Serial）** 运行。默认情况下代码都会被 GCD 放在**主队列 （main）**运行。
+
+但如果所有业务都放在主队列，某些复杂业务可能会阻塞主队列。为此，GCD通过 **队列 FIFO** 和**线程池**，实现了任务的**并发（Concurrent）**执行。
+
+ Swift 中默认提供的并发队列叫做**全局队列 （Global）**，全局队列使用参数 **QOS**（Quality of Service）考虑任务的优先级。
+
+按优先级从高到底分别是：
+
+- **`.userInteractive`** 
+
+  快速执行此操作，决定UI。将 QOS 设置为 UI 级时GCD 会将任务分配到高性能核心上尽快完成。
+
+- **`.userInitiated`** 
+
+  用户发起的任务，现在就做
+
+- **`.utility`** 
+
+  需要发生，但非用户请求
+
+- **`.background`** 
+
+  后台任务，如清理等维护任务
 
 线程池的管理由操作系统完成。GCD的工作方式是允许可并行运行的程序中的特定任务排队等待执行，并根据处理资源的可用性，安排它们在任何可用处理器内核上执行。
 
-GCD 中有很多不同的函数，但是 GCD 有两个基本任务：
+GCD 的两个基本任务是：
 
 - 访问队列
 - 将代码块放入队列
 
 
 
-涉及概念：线程（Threads）、队列（Queues）、闭包（Cloures）、主队列（Main Queue）：系统使用单个线程来处理主队列中的所有代码块。 因此，它也可以用于同步。后台队列（Background Queues）。
-
-
-
 ### 多线程
-
-创建一个队列有多种方式，下面是其中的 2 种。qos(quality of service)
-
-```Swift
-//	1. 创建必须张贴所有UI代码的队列
-DispatchQueue.main
-
-//	2. 创建具有某种优先级的非 UI 队列
-DispatchQueue.global(qos: Qos)
-
-/* qos 的取值如下：
-	.userInteractive   	快速执行此操作，决定UI
- 	.userInitiated	   	用户只是要求这样做，所以现在就做
- 	.utility			需要发生，但非用户请求
- 	.background			维护任务（如清理）
-*/
-```
 
 将一个闭包加入队列有 2 种基本的方式，最常用的是`.async`，它将在“稍后执行这个闭包”。在 UI 代码中不会调用.sync，因为它会阻塞 UI。但是，你可以在后台队列中调用它。
 
 ```Swift
-// 将闭包加入队列的 2 中基本方式
+// 将闭包加入队列的 2 种基本方式
 let queue = DispatchQueue.main  // or DispatchQueue.global(qos:)
 queue.async {/*在队列上执行的代码*/}
 queue.sync {/*在队列上执行的代码*/}
@@ -759,52 +854,44 @@ DispatchQueue(global: .userInitiated).async {
 }
 ```
 
-异步 API：在 iOS 异步编程中常常使用 `DispatchQueue.main.async { }` ，而Dispatch.global(qos:)用得少，原因是大量异步 iOS API 运行在更高层次。大量 iOS 函数会在全局队列中自动完成他们的工作。比如 URLSession（从一个 URL 读取数据并返回）。
-
-```Swift
-DispatchQueue.main.async { } 	// iOS 异步编程中常用 
-
-Dispatch.global(qos:)			//不常用
-```
-
-
+异步 API：在 iOS 异步编程中常常使用 `DispatchQueue.main.async { }` ，而`Dispatch.global(qos:)`用得少，原因是大量异步 iOS API 运行在更高层次。大量 iOS 函数会在全局队列中自动完成他们的工作。比如 URLSession（从一个 URL 读取数据并返回）。
 
 #### 数据结构和函数
 
-Dispatch（调度）框架声明了几种数据类型和函数来创建和操作它们：
+`Dispatch`（调度）框架声明了几种数据类型和函数来创建和操作它们：
 
-| 队列和任务                     | 说明                                                         |
-| ------------------------------ | ------------------------------------------------------------ |
-| DispatchQueue（调度队列）      | 一个对象，用于在应用程序的主线程或后台线程上串行或并发地管理任务的执行 |
-| DispatchWorkItem（调度工作项） | 以某种方式封装想要执行的工作，从而可以附加  completion 句柄或执行依赖项 |
-| DispatchGroup（调度组）        | 将一组任务作为一个单元监视                                   |
-| DispatchQoS                    | 任务的服务质量或执行优先级                                   |
+| 队列和任务         | 名称       | 说明                                                         |
+| ------------------ | ---------- | ------------------------------------------------------------ |
+| `DispatchQueue`    | 调度队列   | 一个对象，用于在应用程序的主线程或后台线程上串行或并发地管理任务的执行 |
+| `DispatchWorkItem` | 调度工作项 | 以某种方式封装想要执行的工作，从而可以附加  completion 句柄或执行依赖项 |
+| `DispatchGroup`    | 调度组     | 将一组任务作为一个单元监视                                   |
+| `DispatchQoS`      |            | 任务的服务质量或执行优先级                                   |
 
-| 系统事件监视         | 说明                                                         |
-| -------------------- | ------------------------------------------------------------ |
-| DispatchSource       | 一个对象，用于协调处理特定的低级系统事件，例如文件系统事件，计时器和UNIX信号 |
-| DispatchIO           | 一个对象，使用基于流或随机访问的语义管理文件描述符上的操作   |
-| DispatchData         | 一个对象，用于管理基于内存的数据缓冲区，并将其公开为连续的内存块 |
-| DispatchDataIterator | 调度数据对象内容上的逐字节迭代器                             |
+| 系统事件监视           | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| `DispatchSource`       | 一个对象，用于协调处理特定的低级系统事件，例如文件系统事件，计时器和UNIX信号 |
+| `DispatchIO`           | 一个对象，使用基于流或随机访问的语义管理文件描述符上的操作   |
+| `DispatchData`         | 一个对象，用于管理基于内存的数据缓冲区，并将其公开为连续的内存块 |
+| `DispatchDataIterator` | 调度数据对象内容上的逐字节迭代器                             |
 
-| 任务同步          | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ |
-| DispatchSemaphore | 一个对象，通过使用传统的计数信号量来控制对跨多个执行上下文的资源的访问 |
+| 任务同步            | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| `DispatchSemaphore` | 一个对象，通过使用传统的计数信号量来控制对跨多个执行上下文的资源的访问 |
 
-| Time Constructs              | 说明                                       |
-| ---------------------------- | ------------------------------------------ |
-| DispatchTime                 | 相对于默认时钟的时间点，纳秒精度           |
-| DispatchWallTime             | 根据 wall clock 的绝对时间点，以微秒为单位 |
-| DispatchTimeInterval（枚举） | 秒，毫秒，微秒或纳秒                       |
-| DispatchTImeoutResult        | 表示调度操作是否在指定时间之前完成的结果值 |
-| dispatch_time_t              | 时间的抽象表示                             |
-| DISPATCH_WALLTIME_NOW: UInt  | 当前时间                                   |
+| Time Constructs               | 说明                                       |
+| ----------------------------- | ------------------------------------------ |
+| `DispatchTime`                | 相对于默认时钟的时间点，纳秒精度           |
+| `DispatchWallTime`            | 根据 wall clock 的绝对时间点，以微秒为单位 |
+| `DispatchTimeInterval`        | 枚举：秒，毫秒，微秒或纳秒                 |
+| `DispatchTImeoutResult`       | 表示调度操作是否在指定时间之前完成的结果值 |
+| `dispatch_time_t`             | 时间的抽象表示                             |
+| `DISPATCH_WALLTIME_NOW: UInt` | 当前时间                                   |
 
 | Dispatch 对象                                                | 说明                                       |
 | ------------------------------------------------------------ | ------------------------------------------ |
-| DispatchObject                                               | 大多数 dispatch 类型的基类                 |
-| DispatchPredicate                                            | 枚举，在给定执行上下文中进行评估的逻辑条件 |
-| func dispatchPrecondition(condition: () -> DispatchPredicate) | 检查进一步执行所需的调度条件               |
+| `DispatchObject`                                             | 大多数 dispatch 类型的基类                 |
+| `DispatchPredicate`                                          | 枚举，在给定执行上下文中进行评估的逻辑条件 |
+| `func dispatchPrecondition(condition: () -> DispatchPredicate)` | 检查进一步执行所需的调度条件               |
 
 
 
