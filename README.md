@@ -8,9 +8,7 @@
 - [Rust](rust/rust.md)
 - [Go](golang/golang.md)
 
-## 移动开发
-
-### iOS
+## iOS 开发
 
 - [Swift 语法（中文版）](swift/swift_zh.md)
 - [Swift 代码段](swift/code.md)
@@ -19,10 +17,6 @@
 - Xcode
 - Dependency
 - Style
-
-### Android
-
-Kotlin
 
 ## Web 开发
 
