@@ -8,10 +8,6 @@
 - [Rust](rust/rust.md)
 - [Go](golang/golang.md)
 
-## 版本控制
-
-- [Git](git/git.md)
-
 ## 移动开发
 
 ### iOS
@@ -25,6 +21,10 @@ Kotlin
 ## Web 开发
 
 HTML5，CSS3，ES6，DOM，BOM，React，Vue...
+
+## 工具
+
+- 分布式版本控制 [Git](git/git.md)
 
 ## 小技巧
 
