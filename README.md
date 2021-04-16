@@ -4,7 +4,7 @@
 
 ## 编程语言
 
-- [C](c/c.md)
+- [C](c/C语言由源代码生成可执行文件的过程.md)
 - [C++](cpp/cpp.md)
 - [Swift](swift/swift_zh.md)
 - [Rust](rust/rust.md)
@@ -17,12 +17,12 @@
 - [App Life Cycle](swift/appLifeCycle.md)
 - [UX / IxD/ UI Desgin (思维导图)](images/APPDesign.png)
 - [Xcode](swift/xcode.md)
-- Dependency
+- [Dependency](swift/dependencyManager.md)
 - Style
 
 ## Web 开发
 
-HTML5，CSS3，ES6，DOM，BOM，React，Vue...
+HTML5，CSS3，ES6，DOM，BOM，React，Vue…[XML](web/xml.md)
 
 ## 工具
 
