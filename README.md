@@ -4,6 +4,8 @@
 
 ## 编程语言
 
+- [C](c/c.md)
+- [C++](cpp/cpp.md)
 - [Swift](swift/swift_zh.md)
 - [Rust](rust/rust.md)
 - [Go](golang/golang.md)
