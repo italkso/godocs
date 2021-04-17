@@ -2,6 +2,13 @@
 
 关于C/C++/Rust/Go，Swift， JavaScript,  HTML5, CSS3等编程/标记语言的总结和资源链接(**学习交流**)。
 
+## 操作系统
+
+- [Unix](os/unix.md)
+- [Linux](os/linux.md)
+
+
+
 ## 编程语言
 
 - [C](c/C语言由源代码生成可执行文件的过程.md)
@@ -9,6 +16,9 @@
 - [Swift](swift/swift_zh.md)
 - [Rust](rust/rust.md)
 - [Go](golang/golang.md)
+- [Shell](os/shell.md)
+
+
 
 ## iOS 开发
 
@@ -21,18 +31,27 @@
 - [SwiftUI](swift/swiftui.md)
 - Style
 
+
+
 ## Web 开发
 
 HTML5，CSS3，ES6，DOM，BOM，React，Vue…[XML](web/xml.md)
+
+
 
 ## 工具
 
 - 分布式版本控制 [Git](tool/git.md)
 - 产品原型制作 [Sketch 帮助文档](https://www.sketch.com/docs/) ，[Sketch 实践总结](tool/sketch.md)
+- 文本编辑器 [Vim](tool/vim.md) [Emacs](tool/emacs.md)
+
+
 
 ## 小技巧
 
 [Tips](tips/tips.md)
+
+
 
 ## 贡献
 
