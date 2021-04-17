@@ -12,11 +12,28 @@
 ## 编程语言
 
 - [C](c/C语言由源代码生成可执行文件的过程.md)
-- [C++](cpp/cpp.md)
-- [Swift](swift/swift_zh.md)
-- [Rust](rust/rust.md)
+
+  Procedure Oriented Programming Language
+
+- [C++](cpp/cpp.md) 
+
+  C with Class，OOP
+
+- [Swift](swift/swift_zh.md) 
+
+  New programming language for iOS development
+
+- [Rust](rust/rust.md) 
+
+  Build reliable and efficient softwares
+
 - [Go](golang/golang.md)
-- [Shell](os/shell.md)
+
+  Build simple, reliable, and efficient software
+
+- [Shell](os/shell.md) 
+
+  Where there is a shell，there is a way
 
 
 
@@ -41,18 +58,32 @@ HTML5，CSS3，ES6，DOM，BOM，React，Vue…[XML](web/xml.md)
 
 ## 工具
 
-- 分布式版本控制 [Git](tool/git.md)
-- 产品原型制作 [Sketch 帮助文档](https://www.sketch.com/docs/) ，[Sketch 实践总结](tool/sketch.md)
-- 文本编辑器 [Vim](tool/vim.md) [Emacs](tool/emacs.md)
+- 分布式版本控制
+
+   [Git](tool/git.md)
+
+- 产品原型制作
+
+   [Sketch 帮助文档](https://www.sketch.com/docs/) ，[Sketch 实践总结](tool/sketch.md)
+
+- 文本编辑器
+
+   [Vim](tool/vim.md) [Emacs](tool/emacs.md)
 
 
 
 ## 小技巧
 
-[Tips](tips/tips.md)
+- [Tips](tips/tips.md)
 
 
 
 ## 贡献
 
-欢迎指正、添加文档或增加新的示例。
+持续更新中，欢迎指正、添加文档或增加新的示例。
+
+
+
+## 协议
+
+MIT
