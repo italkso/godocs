@@ -46,6 +46,7 @@
 - [Xcode](swift/xcode.md)
 - [Dependency](swift/dependencyManager.md)
 - [SwiftUI](swift/swiftui.md)
+- [MVVM - 设计模式](swift/mvvm.md)
 - Style
 
 
@@ -56,19 +57,21 @@ HTML5，CSS3，ES6，DOM，BOM，React，Vue…[XML](web/xml.md)
 
 
 
-## 工具
+## 通用知识与工具
 
 - 分布式版本控制
 
-   [Git](tool/git.md)
+   [Git](general/git.md)
 
 - 产品原型制作
 
-   [Sketch 帮助文档](https://www.sketch.com/docs/) ，[Sketch 实践总结](tool/sketch.md)
+   [Sketch 帮助文档](https://www.sketch.com/docs/) ，[Sketch 实践总结](general/sketch.md)
 
 - 文本编辑器
 
-   [Vim](tool/vim.md) [Emacs](tool/emacs.md)
+   [Vim](general/vim.md)	 [Emacs](general/emacs.md)
+
+- [API](general/api.md)
 
 
 

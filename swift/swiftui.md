@@ -127,17 +127,17 @@ extension View {
 
 <img src="../images/SwiftUI-SaDF-Overview@2x.png" alt="A diagram showing how SwiftUI responds to external events and user inputs by" style="zoom:67%;" />
 
-Image from
+Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4fee13b0ffd4854249fa6d4740449865/6075/SwiftUI-SaDF-Overview@2x.png)
 
-<https://docs-assets.developer.apple.com/published/4fee13b0ffd4854249fa6d4740449865/6075/SwiftUI-SaDF-Overview@2x.png>
+数据流动（Data Flow） 指应用程序中数据的传递方式，而数据存储 （Data Persistence）表示本地或者云端存储。
 
- 
+「接收用户输入的数据」、「改变数据状态来更新界面、「渲染新内容」等由 SwiftUI 负责，开发者只需要使用由符号 **@** 表示的**属性包装器**（Property Wrapper）说明想要执行的操作。@State、@Binding 和@Environment 是与数据流动有关的几个常见属性包装器。它们主要负责不同视图间的信息传递，视图与数据之间的沟通。
+
+
 
 - **@State 状态 **
 
-  属性包装器 @State 负责数据变化的状态。符号 **@** 代表[属性包装器（Property Wrapper)](https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID617)。
-
-  将对应的变量全权交给 SwiftUI 进行内存和状态管理，适用于在**当前视图**结构中可能会被修改的，需要驱动界面变化的变量。仅在当前定义所处的视图结构中有效。
+  @State 的作用是将对应的变量全权交给 SwiftUI 进行内存和状态管理。即负责数据变化的状态，适用于在**当前视图**结构中可能会被修改的，需要驱动界面变化的变量。
 
   ```swift
   import SwiftUI
@@ -156,9 +156,8 @@ Image from
                   .clipShape(Rectangle())
                   .background(Color.orange)
               
-              if isVisible == true {
-                  Text("Hello, World")
-                      .font(.headline)
+              if isVisible {
+                  Text("Hello, World").font(.headline)
               }
           }
       }
@@ -167,14 +166,48 @@ Image from
 
   
 
-  
-
 - **@Binding 绑定** 
 
-  属性包装器 @Binding 传递变化，将父级视图结构中的信息传递到子级视图结构中，即将子视图中的信息与父视图结构的信息做捆绑。
+  在子视图中使用属性包装器 @Binding，能够将父级视图结构中的信息传递到子级视图结构中，即将子视图中的信息与父视图结构的信息做捆绑，传递变化。
 
   ```swift
-  @Binding var userInput: String
+  import SwiftUI
+  
+  struct MySuperView: View {
+      
+      @State var userInput = ""
+      
+      var body: some View {
+          VStack {
+              MySubView(userInput: $userInput)
+              AnotherSubView(userInput: $userInput)
+          }
+      }
+  }
+  
+  struct MySubView: View {
+      //	Add a binding variable in subview
+      @Binding var userInput: String
+      
+      var body: some View {
+          TextField("Enter your name",text: $userInput)
+              .textFieldStyle(RoundedBorderTextFieldStyle())
+              .padding()
+              .background(Color.red)
+              
+      }
+  }
+  
+  struct AnotherSubView: View {
+      @Binding var userInput: String
+      
+      var body: some View {
+          TextField("Enter your name",text: $userInput)
+              .textFieldStyle(RoundedBorderTextFieldStyle())
+              .padding()
+              .background(Color.blue)
+      }
+  }
   ```
 
   **唯一真值原则（Single Source of Truth**）是数据流动中的重要思想。无论用户处在应用程序的哪一个视图结构中，其信息存储应且仅应该被存储一次。为了保障子视图结构中用户输入的信息与父视图结构中所包含的信息处于同一个源头，即符合「唯一真值原则」，子视图中信息应与父级视图绑定。
@@ -183,14 +216,14 @@ Image from
 
 - **@Environment 环境**  
 
-  属性包装器 @Environment 负责监听系统信息，环境中包含许多种由系统提供的信息，每个不同类别的信息叫做**环境值（[EnvironmentValues](https://developer.apple.com/documentation/swiftui/environmentvalues)）**， [`pixelLength`](https://developer.apple.com/documentation/swiftui/environmentvalues/pixellength), [`scenePhase`](https://developer.apple.com/documentation/swiftui/environmentvalues/scenephase), 或者 [`locale`](https://developer.apple.com/documentation/swiftui/environmentvalues/locale)。
+  属性包装器 @Environment 负责监听系统信息，环境中包含许多种由系统提供的信息，每个不同类别的信息叫做**环境值**（[EnvironmentValues](https://developer.apple.com/documentation/swiftui/environmentvalues)），比如 [`pixelLength`](https://developer.apple.com/documentation/swiftui/environmentvalues/pixellength),  [`scenePhase`](https://developer.apple.com/documentation/swiftui/environmentvalues/scenephase) 或者  [`locale`](https://developer.apple.com/documentation/swiftui/environmentvalues/locale)。
 
   ```swift
-  //	环境变量
+  //	Environment
   @Environment(\.locale) var locale: Locale
   @Environment(\.colorScheme) var colorScheme: ColorScheme
   
-  //
+  // colorScheme
   if colorScheme == .dark { // Checks the wrapped value.
       DarkContent()
   } else {
@@ -213,6 +246,8 @@ Image from
   - 使用[`PreferenceKey`](https://developer.apple.com/documentation/swiftui/preferencekey)从子视图向上通过视图层次结构传递数据。
   - 使用[`FetchRequest`](https://developer.apple.com/documentation/swiftui/fetchrequest)管理与Core Data一起存储的持久性数据。
 
+  
+
 ***Reference***
 
-https://developer.apple.com/documentation/swiftui/state-and-data-flow
+- <https://developer.apple.com/documentation/swiftui/state-and-data-flow>
