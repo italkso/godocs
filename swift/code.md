@@ -1,6 +1,8 @@
 # Coding in Swift
 
-## struct
+### 1. Grammer
+
+#### struct
 
 ```swift
 struct StructName {
@@ -20,7 +22,7 @@ struct StructName {
 }
 ```
 
-## enum
+#### enum
 
 ```swift
 enum Optional {
@@ -35,7 +37,7 @@ enum CompassPoint {
 }
 ```
 
-## class
+#### class
 
 ```swift
 class SomeBaseClass {
@@ -47,7 +49,7 @@ class SomeSubclass: SomeSuperclass {
 }
 ```
 
-## extension
+#### extension
 
 ```swift
 extension SomeType {
@@ -67,7 +69,7 @@ extension Double {
 }
 ```
 
-## protocol
+#### protocol
 
 ```swift
 protocol MyProtocol {
@@ -153,6 +155,12 @@ let birthdays = [personOne.birthday: personOne, personTwo.birthday: personTwo]
 ```
 
 
+
+### URLSession 
+
+```swift
+URLSession.shared.dataTask(with: url) { (data, response, error) in }.resume()
+```
 
 
 

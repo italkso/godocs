@@ -1,6 +1,6 @@
-## SwiftUI 
+## SwiftUI
 
-### 核心概念
+### 1. 核心概念
 
 **View** 视图和 **Modifier **修改器是描述性 UI 编程框架 **SwiftUI** 的核心 。
 
@@ -35,7 +35,19 @@ struct SwiftUIView: View {
 
 
 
-### UI 与交互层面
+### 2. SwiftUI 应用程序的组成
+
+- Apps 应用层面：`struct ReaderAPP ：{ }`，负责告知「代码归属同一个应用」
+
+- Scenes 场景层面： `var body: some Scene { }`，负责处理「应用多开」
+
+- Views 视图层面：`struct ContentView: view { }`，应用程序中将「呈现的视图」
+
+  注：`@main` 负责告知操作系统此处为应用的进入点。
+
+  
+
+### 3. UI 与交互层面
 
 #### 常用视图
 
@@ -121,7 +133,7 @@ extension View {
 
 
 
-### 状态和数据流动（State & Data Flow）
+### 4. 状态和数据流动（State & Data Flow）
 
 > SwiftUI provides tools, like state variables and bindings, for connecting your app’s data to the user interface. These tools help you maintain a single source of truth for every piece of data in your app.
 
@@ -129,13 +141,33 @@ extension View {
 
 Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4fee13b0ffd4854249fa6d4740449865/6075/SwiftUI-SaDF-Overview@2x.png)
 
-数据流动（Data Flow） 指应用程序中数据的传递方式，而数据存储 （Data Persistence）表示本地或者云端存储。
+**数据流动**（Data Flow） 指应用程序中数据的传递方式。
 
-「接收用户输入的数据」、「改变数据状态来更新界面、「渲染新内容」等由 SwiftUI 负责，开发者只需要使用由符号 **@** 表示的**属性包装器**（Property Wrapper）说明想要执行的操作。@State、@Binding 和@Environment 是与数据流动有关的几个常见属性包装器。它们主要负责不同视图间的信息传递，视图与数据之间的沟通。
+- 通过将值类型包装为[`State`](https://developer.apple.com/documentation/swiftui/state) 属性来在单个视图内管理UI状态的变化。
+- 使用[`ObservedObject`](https://developer.apple.com) 属性包装器连接遵循[`ObservableObject`](https://developer.apple.com/documentation/Combine/ObservableObject)协议的外部引用模型数据。
+- 使用[`EnvironmentObject`](https://developer.apple.com/documentation/swiftui/environmentobject)属性包装器访问存储在环境中的可观察对象(observable object)。
+- 使用[`StateObject`](https://developer.apple.com/documentation/swiftui/stateobject)直接在视图中实例化可观察对象。
+- 使用[`Binding`](https://developer.apple.com/documentation/swiftui/binding)属性包装器共享对唯一真值（ a source of truth）的引用，例如状态或可观察对象。
+- 通过将值存储在[`Environment`](https://developer.apple.com/documentation/swiftui/environment)中，在整个应用程序中分配值。
+- 使用[`PreferenceKey`](https://developer.apple.com/documentation/swiftui/preferencekey)从子视图向上通过视图层次结构传递数据。
+- 使用[`FetchRequest`](https://developer.apple.com/documentation/swiftui/fetchrequest)管理与Core Data一起存储的持久性数据。
+
+-  `ObservableObject` 协议
+- `@State`
+- `@Binding`
+- `@Environment`
+-  `@Published`
+- `@StateObject`
+- `@ObservedObject`
+-  `@EnvironmentObject` 
+
+「接收用户输入的数据」、「改变数据状态来更新界面、「渲染新内容」等由 SwiftUI 负责，开发者只需要使用由符号 **@** 表示的**属性包装器**（Property Wrapper）说明想要执行的操作。
+
+@State、@Binding 和@Environment 是与数据流动有关的几个常见属性包装器。它们主要负责不同视图间的信息传递，视图与数据之间的沟通。
 
 
 
-- **@State 状态 **
+- **@State 状态**
 
   @State 的作用是将对应的变量全权交给 SwiftUI 进行内存和状态管理。即负责数据变化的状态，适用于在**当前视图**结构中可能会被修改的，需要驱动界面变化的变量。
 
@@ -168,7 +200,9 @@ Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4
 
 - **@Binding 绑定** 
 
-  在子视图中使用属性包装器 @Binding，能够将父级视图结构中的信息传递到子级视图结构中，即将子视图中的信息与父视图结构的信息做捆绑，传递变化。
+  在子视图中使用属性包装器 @Binding，能够将父级视图结构中的信息传递到子级视图结构中，即将子视图中的信息与父视图结构的信息做捆绑，传递变化。无论出现多少个绑定，只存在唯一的真值。当修改绑定时，实际修改的是原有值。使用`$变量名`可以将绑定传递下去。
+
+  
 
   ```swift
   import SwiftUI
@@ -216,7 +250,7 @@ Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4
 
 - **@Environment 环境**  
 
-  属性包装器 @Environment 负责监听系统信息，环境中包含许多种由系统提供的信息，每个不同类别的信息叫做**环境值**（[EnvironmentValues](https://developer.apple.com/documentation/swiftui/environmentvalues)），比如 [`pixelLength`](https://developer.apple.com/documentation/swiftui/environmentvalues/pixellength),  [`scenePhase`](https://developer.apple.com/documentation/swiftui/environmentvalues/scenephase) 或者  [`locale`](https://developer.apple.com/documentation/swiftui/environmentvalues/locale)。
+  属性包装器 `@Environment` 负责监听系统信息，环境中包含许多种由系统提供的信息，每个不同类别的信息叫做**环境值**（[EnvironmentValues](https://developer.apple.com/documentation/swiftui/environmentvalues)），比如 [`pixelLength`](https://developer.apple.com/documentation/swiftui/environmentvalues/pixellength),  [`scenePhase`](https://developer.apple.com/documentation/swiftui/environmentvalues/scenephase) 或者  [`locale`](https://developer.apple.com/documentation/swiftui/environmentvalues/locale)。
 
   ```swift
   //	Environment
@@ -236,18 +270,99 @@ Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4
 
   
 
-  **总结**
-  - 通过将值类型包装为[`State`](https://developer.apple.com/documentation/swiftui/state) 属性来在单个视图内管理UI状态的变化。
-  - 使用[`ObservedObject`](https://developer.apple.com) 属性包装器连接遵循[`ObservableObject`](https://developer.apple.com/documentation/Combine/ObservableObject)协议的外部引用模型数据。
-  - 使用[`EnvironmentObject`](https://developer.apple.com/documentation/swiftui/environmentobject)属性包装器访问存储在环境中的可观察对象(observable object)。
-  - 使用[`StateObject`](https://developer.apple.com/documentation/swiftui/stateobject)直接在视图中实例化可观察对象。
-  - 使用[`Binding`](https://developer.apple.com/documentation/swiftui/binding)属性包装器共享对唯一真值（ a source of truth）的引用，例如状态或可观察对象。
-  - 通过将值存储在[`Environment`](https://developer.apple.com/documentation/swiftui/environment)中，在整个应用程序中分配值。
-  - 使用[`PreferenceKey`](https://developer.apple.com/documentation/swiftui/preferencekey)从子视图向上通过视图层次结构传递数据。
-  - 使用[`FetchRequest`](https://developer.apple.com/documentation/swiftui/fetchrequest)管理与Core Data一起存储的持久性数据。
+  ### 5. 应用中的数据状态监测
 
+  <img src="../images/mvvmCS193P.png" alt="MVVM Design Patern" style="zoom:67%;" />
+
+- **Combine** 
+
+  响应式框架 `Combine` 是 `SwiftUI` 中数据流动背后的驱动器，其中视图与数据的关系，「**视图是数据状态改变的结果 Views are a Function of State**」。
+
+- **ObservableObject & @Published**
+
+  **可观察对象**（`ObservableObject` ）是一个协议，该协议要求所有遵守该协议的类必须包含**发布器** （`@Published`）这个属性包装器。使用`@Published` 的目的是「标注哪些数据被改变时需要被发送」。当数据发生改变时，发布器会会自动将最新数据推送至所有订阅的视图中。
+
+- **@ObservedObject**
+
+  ````swift
+  //	订阅可观察对象
+  @ObservedObject var data: Data
+  
+  //	直接在视图中初始化并交由 SwiftUI 管理存储
+  @StateObject var data = Data()	
+  
+  //	在最高层级的视图中把数据装到沙包里(丢沙包式)
+  .environmentObject(data)
+  //	跨视图使用（任意子视图中的写法 —— 接沙包）
+  @EnvironmentObject var data: Data
+  ````
+
+  `@ObservedObject` 是放置在视图文件中，用于「订阅可观察对象」的属性包装器。 `@StateObject` 和 `@EnvironmentObject ` 是`@ObservedObject` 的两个变种。
+
+  ```swift
+  import SwiftUI
+  
+  class Data: ObservableObject {
+      @Published var title = "Pride and Prejudice"
+      @Published var author = "Jane Austen"
+      @Published var content = "A single man in possession of a good fortune must be in want of a wife..."
+  }//Data.swift - Provide data source for Apps
+  ```
+
+  
+
+  ```swift
+  import SwiftUI
+  
+  struct MyView: View {
+  //    @ObservedObject var data: Data
+      @StateObject var data = Data()
+      
+      var body: some View {
+          FirstSubView().environmentObject(data)
+      }
+  }
+  
+  struct FirstSubView: View {
+      var body: some View {
+          SecondSubView()
+      }
+  }
+  
+  struct SecondSubView: View {
+      @EnvironmentObject var data: Data
+      
+      var body: some View {
+          VStack(alignment: .leading, spacing: 20) {
+              Text(data.title)
+                  .font(.headline)
+                  .foregroundColor(.red)
+              Text(data.author)
+                  .font(.subheadline)
+                  .foregroundColor(.secondary)
+              Text(data.content)
+                  .font(.body)
+                  .padding(.vertical)
+          }.padding()
+      }
+  }//	Use data from Data.swift
+  ```
+
+  
+
+  ### 6. 数据存储
+
+  数据存储 （Data Persistence）表示本地或者云端存储。
+
+  
+
+  ### 7. UIFeedbackGenerator
+
+  [反馈生成器](https://developer.apple.com/documentation/uikit/uifeedbackgenerator) `UIFeedbackGenerator` 包含三个变种，分别是 `UINotificationFeedbackGenerator`，`UIImpactFeedbackGenerator` 和 `UISelectionFeedbackGenerator` 用于生成基础的震动反馈。
+  
   
 
 ***Reference***
 
-- <https://developer.apple.com/documentation/swiftui/state-and-data-flow>
+[1] <https://developer.apple.com/documentation/swiftui/state-and-data-flow>
+
