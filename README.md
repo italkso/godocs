@@ -88,7 +88,7 @@ ES6，DOM，BOM，[React](web/react.md)，Vue…
 
 ### 文本编辑器
 
-[Vim](general/vim.md)	 [Emacs](general/emacs.md)
+[Vim](general/vim.md)	，[Emacs](general/emacs.md)
 
 ### API
 
@@ -96,7 +96,7 @@ ES6，DOM，BOM，[React](web/react.md)，Vue…
 
 ### 通用数据交换格式
 
-JSON	[XML](web/xml.md)	
+[JSON](general/json.md)，[XML](general/xml.md)，[TOML](general/toml.md)	
 
 
 
