@@ -354,10 +354,22 @@ Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4
 
   数据存储 （Data Persistence）表示本地或者云端存储。
 
+  #### FileManager
+
+  使用 FileManager 访问设备的本地存储空间，并将数据以 JSON 文件的形式储存。
+
+  - 准备数据模型(Model和 ViewModel)
   
-
+  - 存取本地 JSON 文件
+  
+    用 FileManager 准备文件位置，Apple 生态系统中，各设备均采用沙盒存储机制，即每个应用会拥有自己独立的存储空间。访问该沙盒的方法是 [**File Manager**](https://developer.apple.com/documentation/foundation/filemanager)**文件管理员**，它隶属于**核心文件系统 Foundation 框架**，是文件存取的中介。
+  
+    操作系统管理设备上文件的方式叫做文件夹路径，每个应用的沙盒拥有一个独特的默认文件的文件夹路径。
+  
+  
+  
   ### 7. UIFeedbackGenerator
-
+  
   [反馈生成器](https://developer.apple.com/documentation/uikit/uifeedbackgenerator) `UIFeedbackGenerator` 包含三个变种，分别是 `UINotificationFeedbackGenerator`，`UIImpactFeedbackGenerator` 和 `UISelectionFeedbackGenerator` 用于生成基础的震动反馈。
   
   

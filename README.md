@@ -58,6 +58,8 @@
 
 [SnapKit](swift/snapkit.md) - 自动布局
 
+[BetterSafariView](swift/BetterSafariView.md) - 外链或在应用内打开网站
+
 
 
 ## Web 开发
