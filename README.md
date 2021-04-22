@@ -6,15 +6,15 @@
 
 ## 计算机基础
 
-### 操作系统
+[How computer works](general/how-computer-works.md)
+
+[OOP](general/oop.md) - Object-Oriented Programming
 
 [Unix](os/unix.md)	
 
 [Linux](os/linux.md)	
 
 [Shell](os/shell.md) 
-
-### 编程语言和思想
 
 [C](c/C语言由源代码生成可执行文件的过程.md) - Procedure Oriented Programming Language
 
@@ -23,8 +23,6 @@
 [Rust](rust/rust.md)  - Build reliable and efficient softwares
 
 [Go](golang/golang.md) - Build simple, reliable, and efficient software
-
-[OOP](general/oop.md) - Object-Oriented Programming
 
 [Swift](swift/swift_zh.md) - Summary for Swift
 
@@ -60,15 +58,13 @@
 
 ## Web 开发
 
-HTML5 - 标记语言
+[Web 技术](web/WebTechnologies.md)
 
-CSS3 - 层叠样式表
+[响应式Web设计](web/响应式Web设计.md)
 
-JavaScript - ES6，DOM，BOM
+[JavaScript](web/JavaScript 基础.md) - ES6，DOM，BOM
 
 [React](web/react.md)
-
-Vue
 
 
 
