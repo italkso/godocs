@@ -1,6 +1,6 @@
 # xdocs
 
-关于C/C++/Rust/Go，Swift， JavaScript,  HTML5, CSS3等编程/标记语言的总结和资源链接(**学习交流**)。
+编程相关，比如计算机，编程思想和语言，工具和资源等(**用于学习交流**)
 
 
 
@@ -14,7 +14,7 @@
 
 [Shell](os/shell.md) 
 
-### 系统编程语言
+### 编程语言和思想
 
 [C](c/C语言由源代码生成可执行文件的过程.md) - Procedure Oriented Programming Language
 
@@ -24,17 +24,17 @@
 
 [Go](golang/golang.md) - Build simple, reliable, and efficient software
 
+[OOP](general/oop.md) - Object-Oriented Programming
+
+[Swift](swift/swift_zh.md) - Summary for Swift
+
+
+
 
 
 ## iOS 开发
 
-### Swift
-
-[Swift 语法精要（中文版）](swift/swift_zh.md)	
-
 [Swift 代码范例](swift/code.md)
-
-### 应用程序开发
 
 [Xcode](swift/xcode.md) - 集成开发环境 IDE
 
@@ -44,61 +44,51 @@
 
 [Dependency Manager](swift/dependencyManager.md)	- CocoaPods / SPM 等依赖管理工具
 
-[SwiftUI](swift/swiftui.md)	- DSL，声明式 UI 框架
+[MVVM](swift/mvvm.md) - 一种设计模式，即模型-视图-视图模型
 
-[MVVM](swift/mvvm.md) - 一种设计模式，即模型-视图-视图模型。
+[SwiftUI](swift/swiftui.md)	- DSL，声明式 UI 框架（Apple 官方框架）
 
-#### Apple 官方框架
+[Core Motion](swift/cm.md) - 传感器框架（Apple 官方框架）
 
-[Core Motion](swift/cm.md) - 传感器框架
+[Local Authentication](la.md) - 本地身份认证框架（Apple 官方框架）
 
-[Local Authentication](la.md) - 本地身份认证框架
+[SnapKit](swift/snapkit.md) - 自动布局（第三方框架）
 
-### 第三方框架
-
-[SnapKit](swift/snapkit.md) - 自动布局
-
-[BetterSafariView](swift/BetterSafariView.md) - 外链或在应用内打开网站
+[BetterSafariView](swift/BetterSafariView.md) - 在应用内打开网站（第三方框架）
 
 
 
 ## Web 开发
 
-### HTML5
+HTML5 - 标记语言
 
-标记语言
+CSS3 - 层叠样式表
 
-### CSS3
+JavaScript - ES6，DOM，BOM
 
-层叠样式表
+[React](web/react.md)
 
-### JavaScript
-
-ES6，DOM，BOM，[React](web/react.md)，Vue…
+Vue
 
 
 
 ## 通用知识与工具
 
-### 版本控制
+[Git](general/git.md) - 分布式版本控制
 
-[Git](general/git.md) - 分布式
+Sketch - 产品原型制作， [Sketch 帮助文档](https://www.sketch.com/docs/) ，[Sketch 实践总结](general/sketch.md)
 
-### 产品原型制作
+[Vim](general/vim.md) - 文本编辑器
 
-[Sketch 帮助文档](https://www.sketch.com/docs/) ，[Sketch 实践总结](general/sketch.md)
+[Emacs](general/emacs.md) - 文本编辑器
 
-### 文本编辑器
+[API](general/api.md) - API
 
-[Vim](general/vim.md)	，[Emacs](general/emacs.md)
+[JSON](general/json.md) - JavaScript 对象表示法，通用数据交换格式
 
-### API
+[XML](general/xml.md) - 通用数据交换格式
 
-[API](general/api.md)
-
-### 通用数据交换格式
-
-[JSON](general/json.md)，[XML](general/xml.md)，[TOML](general/toml.md)	
+[TOML](general/toml.md)	- 通用数据交换格式
 
 
 
@@ -108,12 +98,7 @@ ES6，DOM，BOM，[React](web/react.md)，Vue…
 
 
 
-## 贡献
-
-持续更新中，欢迎指正、添加文档或增加新的示例。
-
-
-
 ## 协议
 
-MIT
+[MIT](LICENSE)
+

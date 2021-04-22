@@ -350,29 +350,45 @@ Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4
 
   
 
-  ### 6. 数据存储
+### 6. 数据存储
 
-  数据存储 （Data Persistence）表示本地或者云端存储。
+数据存储 （Data Persistence）表示本地或者云端存储。
 
-  #### FileManager
+#### FileManager
 
-  使用 FileManager 访问设备的本地存储空间，并将数据以 JSON 文件的形式储存。
+使用 FileManager 访问设备的本地存储空间，并将数据以 JSON 文件的形式储存。
 
-  - 准备数据模型(Model和 ViewModel)
+- **准备数据模型(Model和 ViewModel)**
+
   
-  - 存取本地 JSON 文件
+
+- **存取本地 JSON 文件**
+
   
-    用 FileManager 准备文件位置，Apple 生态系统中，各设备均采用沙盒存储机制，即每个应用会拥有自己独立的存储空间。访问该沙盒的方法是 [**File Manager**](https://developer.apple.com/documentation/foundation/filemanager)**文件管理员**，它隶属于**核心文件系统 Foundation 框架**，是文件存取的中介。
-  
-    操作系统管理设备上文件的方式叫做文件夹路径，每个应用的沙盒拥有一个独特的默认文件的文件夹路径。
-  
-  
-  
-  ### 7. UIFeedbackGenerator
-  
-  [反馈生成器](https://developer.apple.com/documentation/uikit/uifeedbackgenerator) `UIFeedbackGenerator` 包含三个变种，分别是 `UINotificationFeedbackGenerator`，`UIImpactFeedbackGenerator` 和 `UISelectionFeedbackGenerator` 用于生成基础的震动反馈。
-  
-  
+
+- **用 FileManager 准备文件位置**
+
+  Apple 各设备中的每个应用会拥有自己独立的存储空间，即采用了「沙盒存储机制」。使用 [**File Manager**](https://developer.apple.com/documentation/foundation/filemanager)可以访问沙盒。File Manager 隶属于 Foundation 框架，是文件存取的中介。
+
+  操作系统管理设备上文件的方式叫做**文件夹路径**，每个应用的沙盒拥有一个独特的默认文件的文件夹路径。
+
+  如果想要让应用支持读写，那么应用就需要获取该默认沙盒路径。语法如下：
+
+  ```swift
+  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+  ```
+
+- **读写本地 JSON 文件**
+
+- **将存储步骤集成在 SwiftUI 中**
+
+- **在 SwiftUI 中读取 JSON 文件**
+
+### 7. UIFeedbackGenerator
+
+[反馈生成器](https://developer.apple.com/documentation/uikit/uifeedbackgenerator) `UIFeedbackGenerator` 包含三个变种，分别是 `UINotificationFeedbackGenerator`，`UIImpactFeedbackGenerator` 和 `UISelectionFeedbackGenerator` 用于生成基础的震动反馈。
+
+
 
 ***Reference***
 
