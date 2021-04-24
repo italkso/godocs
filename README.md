@@ -56,11 +56,13 @@
 
 [Core Motion](swift/cm.md) - 传感器框架（Apple 官方框架）
 
-[Local Authentication](la.md) - 本地身份认证框架（Apple 官方框架）
+[Local Authentication](swift/la.md) - 本地身份认证框架（Apple 官方框架）
 
 [SnapKit](swift/snapkit.md) - 自动布局（第三方框架）
 
 [BetterSafariView](swift/BetterSafariView.md) - 在应用内打开网站（第三方框架）
+
+[WidgetKit](swift/widgets.md) - 桌面小组件
 
 
 

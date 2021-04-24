@@ -60,12 +60,6 @@ struct ListDemoView: View {
         aircrafts.move(fromOffsets: source, toOffset: destination)
     }//移动列表项目的函数
 }
-
-struct ListDemoView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListDemoView()
-    }
-}
 ```
 
 注: 除"飞行者 1 号"外, 其余飞行器名称都是为了 Demo 需要杜撰的。
