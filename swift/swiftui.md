@@ -1,10 +1,6 @@
 ## SwiftUI
 
-### 1. 核心概念
-
-**View** 视图和 **Modifier **修改器是描述性 UI 编程框架 **SwiftUI** 的核心 。
-
-代码`Text("Hello World") .font(.headline)`表示被字体修改器 `.font(.headline)` 修改的 `Text View` 。
+### 1. 概述
 
 ```swift
 import SwiftUI
@@ -21,33 +17,69 @@ struct SwiftUIView: View {
 }
 ```
 
-**View**
+#### 1.1 View 和 Modifier
 
-可见的界面元素，比如按钮、文字、滑条、图片、列表、应用底部按钮等。界面元素的位置关系（ZStack、VStack、HStack）也属于 View 的范畴。
+**View** 和 **Modifier **是声明式 UI 框架 **SwiftUI** 的核心 。比如，代码`Text("Hello World") .font(.headline)`，表示`Text View`被字体修改器 `.font(.headline)` 修改。界面功能由 Swift 配合框架实现，比如播放歌曲、点击按钮后触发付款流程、复制到剪贴板等。 
 
-**Modifier**
+- **View**
 
-修改视图的显示及运作方式，比如字体大小和种类、圆角、动画触控反馈、阴影、边际、背景等界面细节。
+  可见的界面元素（按钮、文字、滑条、图片、列表、应用底部按钮等），界面元素的位置关系（ZStack、VStack、HStack等）。
 
-**界面功能**
+- **Modifier**
 
-由 Swift 配合及框架实现，比如复制到剪贴板，播放歌曲、点击按钮后触发付款流程等。 
+  修改视图的显示及运作方式，比如字体大小和种类、圆角、动画触控反馈、阴影、边际、背景等界面细节。
 
 
 
-### 2. SwiftUI 应用程序的组成
+#### 1.2 SwiftUI 应用程序的组成
 
-- Apps 应用层面：`struct ReaderAPP ：{ }`，负责告知「代码归属同一个应用」
+- **Apps 应用**
 
-- Scenes 场景层面： `var body: some Scene { }`，负责处理「应用多开」
+  `struct ReaderAPP ：{...}`，负责告知「代码归属同一应用」。`@main` 标识的地方为「应用进入点」。
 
-- Views 视图层面：`struct ContentView: view { }`，应用程序中将「呈现的视图」
+- **Scenes 场景**
 
-  注：`@main` 负责告知操作系统此处为应用的进入点。
+   `var body: some Scene {...}`，负责处理「应用多开」。
+
+- **Views 视图**
+
+  `struct ContentView: view {...}`，应用程序中将「呈现的视图」。
 
   
 
-### 3. UI 与交互层面
+#### 1.3 数据流动
+
+将与特定 View 相关的数据封装进 View 的视图结构中，可以使用达到「复用」Views 的目的。
+
+**Manage Mutable Values as State**
+
+```swift
+ @State private var isSearch: Bool = false
+```
+
+你可以使用属性包装器 `@State`声明一个变量，用来存储视图中可能被修改的数据。声明为 `@State` 的变量就是状态属性（state properties），仅用于管理那些会影响到 UI 的瞬时状态（transient state ），比如按钮的高亮状态、过滤设置或者当前选择的列表项。你不应该将状态属性用作数据的持久存储（persistent storage）。
+
+**Share Access to State with Bindings**
+
+<img src="images/SwiftUI-MUIS-Overview@2x.png" alt="A diagram showing state stored in one view, shared with another view through" style="zoom:50%;" />
+
+为了保证在多个Views 中共享数据的一致性，要遵循**唯一真值原则（Single Source of Truth**），这是数据流动中的重要思想。用户无论处在应用程序的哪一个视图结构中，其信息只应该被存储一次。因此，在子视图中应该使用 `@Binding` 与父视图中，即那些声明为 `@State` 的变量进行绑定。这样，多个视图之间就可以共享对状态属性的控制。
+
+```swift
+@Binding var isSearch: Bool
+```
+
+注意，绑定（binding）只是对状态属性的引用，@Binding 变量本身并不拥有一份存储。
+
+使用美元符号 `$`作为前缀可以传递变化，如`$isSearch`。
+
+**Animate State Transitions**
+
+视图（View）状态发生变化时，SwiftUI 会立即更新该状态变化影响到的视图。你可以添加平滑的视觉过渡，方法是调用`withAnimation(_:_:)` 并将修改状态的代码放入该函数的尾随闭包（trailing closure）中。如果你仅仅是想针对某个特定的页面有过渡效果，使用`animation(_:)` 视图修改器就好了。
+
+
+
+### 2. UI 与交互层面
 
 #### 常用视图
 
@@ -144,19 +176,18 @@ Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4
 **数据流动**（Data Flow） 指应用程序中数据的传递方式。
 
 - 通过将值类型包装为[`State`](https://developer.apple.com/documentation/swiftui/state) 属性来在单个视图内管理UI状态的变化。
+- 使用[`Binding`](https://developer.apple.com/documentation/swiftui/binding)属性包装器共享对唯一真值（ a source of truth）的引用，例如状态或可观察对象。
 - 使用[`ObservedObject`](https://developer.apple.com) 属性包装器连接遵循[`ObservableObject`](https://developer.apple.com/documentation/Combine/ObservableObject)协议的外部引用模型数据。
 - 使用[`EnvironmentObject`](https://developer.apple.com/documentation/swiftui/environmentobject)属性包装器访问存储在环境中的可观察对象(observable object)。
 - 使用[`StateObject`](https://developer.apple.com/documentation/swiftui/stateobject)直接在视图中实例化可观察对象。
-- 使用[`Binding`](https://developer.apple.com/documentation/swiftui/binding)属性包装器共享对唯一真值（ a source of truth）的引用，例如状态或可观察对象。
 - 通过将值存储在[`Environment`](https://developer.apple.com/documentation/swiftui/environment)中，在整个应用程序中分配值。
 - 使用[`PreferenceKey`](https://developer.apple.com/documentation/swiftui/preferencekey)从子视图向上通过视图层次结构传递数据。
 - 使用[`FetchRequest`](https://developer.apple.com/documentation/swiftui/fetchrequest)管理与Core Data一起存储的持久性数据。
-
--  `ObservableObject` 协议
+- `ObservableObject` 协议
 - `@State`
 - `@Binding`
 - `@Environment`
--  `@Published`
+- `@Published`
 - `@StateObject`
 - `@ObservedObject`
 -  `@EnvironmentObject` 
@@ -200,7 +231,9 @@ Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4
 
 - **@Binding 绑定** 
 
-  在子视图中使用属性包装器 @Binding，能够将父级视图结构中的信息传递到子级视图结构中，即将子视图中的信息与父视图结构的信息做捆绑，传递变化。无论出现多少个绑定，只存在唯一的真值。当修改绑定时，实际修改的是原有值。使用`$变量名`可以将绑定传递下去。
+  > If a view needs to share control of state with a child view, declare a property in the child with the [`Binding`](https://developer.apple.com/documentation/swiftui/binding) property wrapper. A binding represents a reference to existing storage, preserving a single source of truth for the underlying data. — [Managing-User-Interface-State](https://developer.apple.com/documentation/SwiftUI/Managing-User-Interface-State)
+
+  在子视图中使用属性包装器 @Binding，能够将父视图结构的信息传递给子视图中的信息。无论出现多少个绑定，只存在唯一的真值。当修改绑定时，实际修改的是原有值。使用`$变量名`可以将绑定传递下去。
 
   
 
@@ -243,8 +276,6 @@ Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4
       }
   }
   ```
-
-  **唯一真值原则（Single Source of Truth**）是数据流动中的重要思想。无论用户处在应用程序的哪一个视图结构中，其信息存储应且仅应该被存储一次。为了保障子视图结构中用户输入的信息与父视图结构中所包含的信息处于同一个源头，即符合「唯一真值原则」，子视图中信息应与父级视图绑定。
 
   
 
@@ -393,4 +424,6 @@ Image from [Apple Developer](https://docs-assets.developer.apple.com/published/4
 ***Reference***
 
 [1] <https://developer.apple.com/documentation/swiftui/state-and-data-flow>
+
+[2] <https://developer.apple.com/documentation/SwiftUI/Managing-User-Interface-State>
 

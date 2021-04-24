@@ -1,6 +1,6 @@
 # xdocs
 
-编程相关，比如计算机，编程思想和语言，工具和资源等(**用于学习交流**)
+关于计算机，编程思想和语言，工具和资源等，仅限学习交流。使用 Chrome 、Firefox或 Edge 浏览器打开，代码阅读体验更佳。
 
 
 
@@ -12,9 +12,9 @@
 
 [Unix](os/unix.md)	
 
-[Linux](os/linux.md)	
+[Linux](os/linux.md)	- Linux is not Unix
 
-[Shell](os/shell.md) 
+[Shell](os/shell.md)  - Where’s a shell, there’s a way
 
 [C](c/C语言由源代码生成可执行文件的过程.md) - Procedure Oriented Programming Language
 
@@ -28,11 +28,9 @@
 
 
 
-
-
 ## iOS 开发
 
-[Swift 代码范例](swift/code.md)
+#### 基础
 
 [Xcode](swift/xcode.md) - 集成开发环境 IDE
 
@@ -42,9 +40,19 @@
 
 [Dependency Manager](swift/dependencyManager.md)	- CocoaPods / SPM 等依赖管理工具
 
-[MVVM](swift/mvvm.md) - 一种设计模式，即模型-视图-视图模型
+[Cross Platform](swift/crossplatform.md) - 创建跨 Apple 生态系统的应用
+
+[Swift Code](swift/code.md) - 范例代码
+
+[Struct vs Class](swift/struct_class.md) - 结构体和类的比较
+
+
+
+#### 框架
 
 [SwiftUI](swift/swiftui.md)	- DSL，声明式 UI 框架（Apple 官方框架）
+
+[MVVM](swift/mvvm.md) - 一种设计模式，即模型-视图-视图模型
 
 [Core Motion](swift/cm.md) - 传感器框架（Apple 官方框架）
 
@@ -86,11 +94,15 @@ Sketch - 产品原型制作， [Sketch 帮助文档](https://www.sketch.com/docs
 
 [TOML](general/toml.md)	- 通用数据交换格式
 
+[SQL](general/sql.md) - 数据库
+
 
 
 ## 小技巧
 
 [Tips](tips/tips.md)
+
+[Debug](swift/debugSwift.md)
 
 
 
