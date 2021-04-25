@@ -1,16 +1,22 @@
 # xdocs
 
-关于计算机，编程思想和语言，工具和资源等，仅限学习交流。使用 Chrome 、Firefox或 Edge 浏览器打开，代码阅读体验更佳。
+
+
+> 主	题：计算机，编程思想，编程语言，开发实践，工具使用，资源整理等
+>
+> 使	用：推荐使用 Chrome / Firefox / Edge 浏览器打开，代码阅读体验更佳
+>
+> 说	明：个人开发笔记总结，仅限学习交流使用
 
 
 
 ## 计算机基础
 
-[How computer works](general/how-computer-works.md)
+[How computer works](general/how-computer-works.md) - Machine + Data Process + Abstraction + Algorithm
 
 [OOP](general/oop.md) - Object-Oriented Programming
 
-[Unix](os/unix.md)	
+[Unix](os/unix.md)	- Operation System
 
 [Linux](os/linux.md)	- Linux is not Unix
 
