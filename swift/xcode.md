@@ -254,3 +254,11 @@
 
 - **Xcode 使用蓝色竖条和 M 字母提醒未 Commit 的内容**
 
+
+
+### 6. 访问沙盒本地文件
+
+- 选择菜单栏 「Window - Devices and Simulators」，选择应用运行的设备和查看沙盒的应用后，点击下方齿轮按钮，选择「Download Container」并存储。
+
+- 存储好的沙盒信息为 `XXX.appdata`，右击该文件并选择「Show Package Content」。在打开的文件中，选择「AppData - Documents」即可查看沙盒内容。
+
