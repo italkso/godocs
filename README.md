@@ -36,13 +36,15 @@
 
 ## iOS 开发
 
-#### 基础
+### 基础
 
 [Xcode](swift/xcode.md) - 集成开发环境 IDE
 
 [UX / IxD/ UI Desgin](images/APPDesign.png) - 应用程序设计（思维导图）
 
 [App Life Cycle](swift/appLifeCycle.md)	- iOS 应用的生命周期
+
+[MVVM](swift/mvvm.md) - 一种设计模式，即模型-视图-视图模型
 
 [Dependency Manager](swift/dependencyManager.md)	- CocoaPods / SPM 等依赖管理工具
 
@@ -54,21 +56,27 @@
 
 
 
-#### 框架
+### Apple 官方框架
 
 [SwiftUI](swift/swiftui.md)	- DSL，声明式 UI 框架（Apple 官方框架）
-
-[MVVM](swift/mvvm.md) - 一种设计模式，即模型-视图-视图模型
 
 [Core Motion](swift/cm.md) - 传感器框架（Apple 官方框架）
 
 [Local Authentication](swift/la.md) - 本地身份认证框架（Apple 官方框架）
 
+[WidgetKit](swift/widgets.md) - 桌面小组件
+
+
+
+### 第三方开源框架
+
+[第三方开源库清单（Swift 版）](swift/thirdPartyForSwift.md) - 第三方开源库概述
+
 [SnapKit](swift/snapkit.md) - 自动布局（第三方框架）
 
 [BetterSafariView](swift/BetterSafariView.md) - 在应用内打开网站（第三方框架）
 
-[WidgetKit](swift/widgets.md) - 桌面小组件
+
 
 
 
