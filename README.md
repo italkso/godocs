@@ -2,15 +2,19 @@
 
 
 
-主	题：计算机，编程思想，编程语言，开发实践，工具使用，资源整理等
+**主题** - 计算机，编程思想/语言，开发实战，工具使用以及资源整理等
 
-使	用：推荐使用 Chrome / Firefox / Edge 浏览器打开，代码阅读体验更佳
+**使用** - 推荐使用 Chrome / Firefox / Edge 浏览器打开，代码阅读体验更佳
 
-说	明：个人开发笔记总结，仅限学习交流使用
+**说明** - 本文作为个人的学习和开发记录文档，仅限学习交流和参考
+
+**项目** - 托管于 [GitHub](https://github.com/italkso) 仓库
+
+**主页** - [Italkso](https://italkso.github.io)
 
 
 
-## 计算机基础
+## Basic
 
 [How computer works](general/how-computer-works.md) - Machine + Data Process + Abstraction + Algorithm
 
@@ -30,15 +34,27 @@
 
 [Go](golang/golang.md) - Build simple, reliable, and efficient software
 
-[Swift](swift/swift_zh.md) - Summary for Swift
+[Swift](swift/swift_zh.md) - Summary for Swift Programming Language
+
+[API](general/api.md) - API
+
+[JSON](general/json.md) - JavaScript 对象表示法，通用数据交换格式
+
+[XML](general/xml.md) - 通用数据交换格式
+
+[TOML](general/toml.md)	- 通用数据交换格式
+
+[SQL](general/sql.md) - 数据库
 
 
 
-## iOS 开发
+## iOS
 
 ### 基础
 
 [Xcode](swift/xcode.md) - 集成开发环境 IDE
+
+[Swift Code Style](swift/swiftCodeStyle.md) - Swift 编码规范
 
 [UX / IxD/ UI Desgin](images/APPDesign.png) - 应用程序设计（思维导图）
 
@@ -58,11 +74,11 @@
 
 ### Apple 官方框架
 
-[SwiftUI](swift/swiftui.md)	- DSL，声明式 UI 框架（Apple 官方框架）
+[SwiftUI](swift/swiftui.md)	- DSL，声明式 UI 框架
 
-[Core Motion](swift/cm.md) - 传感器框架（Apple 官方框架）
+[Core Motion](swift/cm.md) - 传感器框架
 
-[Local Authentication](swift/la.md) - 本地身份认证框架（Apple 官方框架）
+[Local Authentication](swift/la.md) - 本地身份认证框架
 
 [WidgetKit](swift/widgets.md) - 桌面小组件
 
@@ -72,15 +88,15 @@
 
 [第三方开源库清单（Swift 版）](swift/thirdPartyForSwift.md) - 第三方开源库概述
 
-[SnapKit](swift/snapkit.md) - 自动布局（第三方框架）
+[SnapKit](swift/snapkit.md) - 自动布局
 
-[BetterSafariView](swift/BetterSafariView.md) - 在应用内打开网站（第三方框架）
-
-
+[BetterSafariView](swift/BetterSafariView.md) - 在应用内打开网站
 
 
 
-## Web 开发
+
+
+## Web
 
 [Web 技术](web/WebTechnologies.md)
 
@@ -92,7 +108,7 @@
 
 
 
-## 通用知识与工具
+## Tools
 
 [Git](general/git.md) - 分布式版本控制
 
@@ -102,15 +118,7 @@ Sketch - 产品原型制作， [Sketch 帮助文档](https://www.sketch.com/docs
 
 [Emacs](general/emacs.md) - 文本编辑器
 
-[API](general/api.md) - API
 
-[JSON](general/json.md) - JavaScript 对象表示法，通用数据交换格式
-
-[XML](general/xml.md) - 通用数据交换格式
-
-[TOML](general/toml.md)	- 通用数据交换格式
-
-[SQL](general/sql.md) - 数据库
 
 
 

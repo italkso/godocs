@@ -262,3 +262,7 @@
 
 - 存储好的沙盒信息为 `XXX.appdata`，右击该文件并选择「Show Package Content」。在打开的文件中，选择「AppData - Documents」即可查看沙盒内容。
 
+  
+
+  ![App Data](images/sandbox_appdata.png)
+
