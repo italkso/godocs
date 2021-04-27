@@ -78,7 +78,9 @@
 
 [Core Motion](swift/cm.md) - 传感器框架
 
-[Local Authentication](swift/la.md) - 本地身份认证框架
+[Local Authentication](swift/la.md) - 本地身份认证框架，需要 Face ID等授权
+
+[Core Location](swift/corelocation.md) - 地理位置服务框架，需要地理位置信息授权，搭配Foundation、 Combine 及 MapKit 框架使用使用
 
 [WidgetKit](swift/widgets.md) - 桌面小组件
 
