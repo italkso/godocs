@@ -21,7 +21,7 @@ sqlite>.quit
 使用 **.show** 命令，来查看 SQLite 命令提示符的默认设置。
 
 ```shell
-sqlite> .show
+sqlite>.show
         echo: off
          eqp: off
      explain: auto
@@ -73,7 +73,7 @@ CREATE TABLE sqlite_master (
 **注释**：以两个连续的 "-" 字符（ASCII 0x2d）开始，并扩展至下一个换行符（ASCII 0x0a）或直到输入结束，以先到者为准。你也可以使用 C 注释，以 "`/*`" 开始，并扩展至下一个 "`*/`" 字符对或直到输入结束，以先到者为准。可跨行。
 
 ```shell
-sqlite> .show -- This a comment
+sqlite>.show -- This a comment
 ```
 
 
@@ -118,13 +118,21 @@ sqlite> .show -- This a comment
 
 运算符是一个保留字或字符，用于指定 SQLite 语句中的条件，并在语句中连接多个条件。运算符主要用于 SQLite 语句的 WHERE 子句中执行操作，如算术、比较、逻辑和位运算。WHERE 子句是用来设置 SELECT 语句的条件语句。
 
-- 算术运算符：`+ - * /  %`
+- 算术运算符
 
-- 比较运算符：`== = != <> > >= !> < <= !<`
+  `+ - * /  %`
 
-- 逻辑运算符：AND，NOT，OR，BETWEEN，EXISTS，IN，NOT IN，LIKE，GLOB，IS NULL，IS，IS NOT，||，UNIQUE
+- 比较运算符
 
-- 位运算符：`& | ~ << >>`等作用于位，并逐位执行操作
+  `== = != <> > >= !> < <= !<`
+
+- 逻辑运算符
+
+  `AND，NOT，OR，BETWEEN，EXISTS，IN，NOT IN，LIKE，GLOB，IS NULL，IS，IS NOT，||，UNIQUE`
+
+- 位运算符
+
+  `& | ~ << >>`等作用于位，并逐位执行操作
 
   
 
@@ -176,7 +184,7 @@ SQLite 使用 **ATTACH DATABASE** 语句选择一个特定的数据库，使用�
 
 ```shell
 sqlite> ATTACH DATABASE 'myTestDB.db' as 'mytest';
-sqlite> .database
+sqlite>.database
 ```
 
 myTestDB.db 是文件名，MYTEST 是数据库名。
