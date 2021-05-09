@@ -1,14 +1,10 @@
-## Sketch
+## 使用矢量设计工具 Sketch 制作产品原型
 
-### 目标
-
-学习使用矢量设计工具 Sketch 制作产品原型。
-
-### 界面
+### 1. 界面
 
 主屏幕分为 4 个区域：顶部的**菜单栏**，中部的**画板**（创作区域），左侧的**页面**及**图层**，以及右侧的**图层选项**。使用快捷键  `⌘ + .`启用 **Presentation Mode** 可以只显示画板。 使用`⌘ ⌥ T` 可以隐藏顶部的工具栏。
 
-![Sketch Interface](../images/sketch-interface.png)
+![Sketch Interface](images/sketch-interface.png)
 
 关于界面更详细的介绍参见 [Sketch 官方帮助文档 - Interface](https://www.sketch.com/docs/the-interface/)。
 
@@ -24,19 +20,19 @@
 
 
 
-### 如何添加插件和组件库
+### 2. 如何添加插件和组件库
 
 打开**首选项 - 插件 - 添加插件**，然后下载需要的插件并解压，放入存放插件文件夹。添加组件库的步骤类型。
 
-<img src="../images/addSketchPlugin.png" alt="image-20210412111336244"  />
+<img src="images/addSketchPlugin.png" alt="image-20210412111336244"  />
 
 
 
-<img src="../images/Plugins_Sketch.png" alt="image-20210412111548564"  />
+<img src="images/Plugins_Sketch.png" alt="image-20210412111548564"/>
 
 
 
-### 使用 Sketch制作产品原型
+### 3. 使用 Sketch制作产品原型
 
 - **制作带壳（手机边框）截图**
 
@@ -64,7 +60,7 @@
 
 - **置入 Apple 官方设计元素**
 
-  ![Apple iOS UI](../images/AppleiOSUI.png)
+  ![Apple iOS UI](images/AppleiOSUI.png)
 
   「**置入 - Apple iOS UI - 选择所需组件**」。
 
@@ -90,9 +86,13 @@
 
   控件可以随时调整设计，批量修改属于同一控件的多个 Instance，比较灵活。修改控件会导致全部控件 Instance 都被修改。Sketch 支持将某个 Instance 与控件解绑（`Shift + Command + Y`）。
 
+  
+
 - **自动对齐**
 
   使用 Sketch 右侧边栏的自动对齐工具，可以实现多个元素的等距对齐。
+
+  
 
 - **导出设计**
 
@@ -103,6 +103,3 @@
 ***Reference***
 
 [Sketch reference manual：https://www.sketch.com/docs/](https://www.sketch.com/docs/)
-
-
-

@@ -83,11 +83,9 @@ SQL 语法：SQL语言关键字不区分大小写！
 
 
 
-## 3. 安装MySQL
+## 3. 安装 MySQL Community Server
 
-下载并安装：MySQL Community Server版本 https://dev.mysql.com/downloads/mysql/。
-
-把mysql安装目录，映射到/usr/local/bin目录下：
+[下载](https://dev.mysql.com/downloads/mysql/)并安装 MySQL Community Server 后，把 mysql 安装目录映射到/usr/local/bin目录下：
 
 ```bash
 $ cd /usr/local/bin
@@ -116,11 +114,3 @@ $ mysql -u root mysql 			#输入 \s 获取更多关于服务器的信息，\q �
 $ mysqladmin -u root version 	#查看正在运行的服务器的状态
 $ mysqladmin variables  		#检查正在运行的服务器中的所有配置选项（datadir 和 have_innodb 等）
 ````
-
-
-
-**Reference**
-
-[1] https://www.liaoxuefeng.com/wiki/1177760294764384/1218728991649984
-
-[2] 《Linux 程序设计》

@@ -2,17 +2,15 @@
 
 
 
-### 1. 概述
-
-
-
 > Do not forget the `git --help` command. 
 
 
 
-2005，在不能再免费使用 BitKeeper的情况下，为了继续维护Linux 内核，Linux 开源社区（特别是Linus Torvalds）开发了自己的版本系统。他们对新的系统制订了若干目标：速度快、简单设计、对非线性开发模式的强力支持（允许成千上万个并行开发的分支）、完全分布式、有能力高效管理类似 Linux内核一样的超大规模项目（速度和数据量）。
 
-下面，让我们深入了解 Git 的相关概念和使用方法。
+
+### 1. 概述
+
+2005，在不能再免费使用 BitKeeper的情况下，为了继续维护Linux 内核，Linux 开源社区（特别是Linus Torvalds）开发了自己的版本系统。他们对新的系统制订了若干目标：速度快、简单设计、对非线性开发模式的强力支持（允许成千上万个并行开发的分支）、完全分布式、有能力高效管理类似 Linux内核一样的超大规模项目（速度和数据量）。下面，让我们深入了解 Git 的相关概念和使用方法。
 
 
 
@@ -75,8 +73,6 @@ $ man git-<verb>
 
 ### 1.3 Git 的重要概念
 
-![git-areas](../images/git-areas.png)
-
 
 
 - **文件的三种状态**
@@ -109,6 +105,8 @@ $ man git-<verb>
 
 - **Repository**
 
+  ![git-areas](images/git-areas.png)
+
   - **工作区（Working Copy）**
 
     对项目的某个版本独立提取出来的内容。
@@ -124,6 +122,8 @@ $ man git-<verb>
   - **远程仓库（Remote Repository）**
 
     存放在 GitHub 等云端的仓库。
+    
+    
 
 - **Branch**
 

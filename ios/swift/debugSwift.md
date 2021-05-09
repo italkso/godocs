@@ -1,4 +1,4 @@
-# Debug
+# Swift Debug 
 
 - **Alamofire 5**
 
@@ -22,5 +22,4 @@
 - **[Command CompileSwift failed with a nonzero exit code in Xcode 12](https://stackoverflow.com/questions/52387452/command-compileswift-failed-with-a-nonzero-exit-code-in-xcode-10)**
 
   Clean project works using `Shift Command K` & `Option Shift Command K` 
-
 

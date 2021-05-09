@@ -2,7 +2,7 @@
 
 完整的Linux的系统需要以下4个关键部件，将Linux系统的各个不同部分汇集起来组成一个易于安装的包，就形成了Linux发行版。
 
-![linux](../images/linux.png)
+![linux](images/linux.png)
 
 - **Linux内核**
 
