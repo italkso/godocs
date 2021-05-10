@@ -46,6 +46,8 @@
 
 [Apple 官方框架：桌面小组件 WidgetKit](ios/swift/widgets.md) 
 
+[Apple 官方框架：App Tracking Transparency](ios/swift/AppTrackingTransparency.md)
+
 [第三方库：第三方开源库清单（Swift 版）](ios/swift/thirdPartyForSwift.md) 
 
 [第三方库：使用 SnapKit 实现自动布局](ios/swift/snapkit.md) 
