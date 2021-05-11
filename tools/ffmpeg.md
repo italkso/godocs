@@ -1,5 +1,7 @@
 ## FFmpeg
 
+**FFmpeg 是 F**ast **F**orward **M**oving **P**icture **E**xperts **G**roup 的缩写，由法国程序员 Fabrice Bellard 使用 C语言编写。还记得 JPEG 吗？让我们正式进入 FFmpeg 的学习。
+
 怎么使用命名行更改视频文件的格式呢？使用类似下面这样的命令即可。
 
 ```bash
@@ -187,14 +189,16 @@ $ ffmpeg \
   `-loop 1`参数表示图片无限循环,`-shortest`参数：表示音频文件结束，输出视频就结束。
 
   
+  
+  小知识：[神级程序员 Fabrice Bellard](https://smartbear.com/blog/fabrice-bellard-portrait-of-a-super-productive-pro/) 使用 JavaScript 写了一个能在浏览器里跑Linux 虚拟机 [Jslinux](https://bellard.org/jslinux/)。
+  
+  
 
-**参考**
+**Reference**
 
-[FFmpeg 视频处理入门教程 — 阮一峰][1]
+1. <http://www.ruanyifeng.com/blog/2020/01/ffmpeg.html>
 
-**文档协议**
+2. <https://github.com/FFmpeg/FFmpeg>
 
-自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）
-
-
+   
 

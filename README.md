@@ -4,8 +4,6 @@
 
 [TOC]
 
-
-
 ## 计算机和编程基础
 
 [计算机的工作原理：Machine + Data Process + Abstraction + Algorithm](basic/how-computer-works.md) 
