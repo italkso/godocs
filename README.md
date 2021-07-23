@@ -4,9 +4,9 @@
 
 [TOC]
 
-## 计算机和编程基础
+## 计算机基础
 
-[计算机的工作原理：Machine + Data Process + Abstraction + Algorithm](basic/how-computer-works.md) 
+[计算机基础：Machine + Data Process + Abstraction + Algorithm](basic/how-computer-works.md) 
 
 [编程范式：面向对象编程 OOP](basic/oop.md)
 
@@ -14,25 +14,47 @@
 
 [操作系统：Linux is not Unix](basic/linux.md)
 
-[编程语言：面向过程的 C 语言](langs/c/C语言由源代码生成可执行文件的过程.md) 
+[编程语言：C 语言](langs/c/C语言由源代码生成可执行文件的过程.md) 
 
-[脚本语言：Where’s a shell, there’s a way](basic/shell.md)  
+[编程语言：C++](langs/cpp/cpp.md)
+
+[编程语言：Rust](langs/rust/rust.md)
+
+[编程语言：Go](langs/golang/golang.md)
+
+[编程语言：Shell](basic/shell.md)  
 
 [应用程序接口：API](basic/api.md) 
 
+[版本控制： Git](tools/git.md)
+
+[文本编辑器：Vim](tools/vim.md) 
+
+[文本编辑器： Emacs](tools/emacs.md) 
+
+[数据库：SQL 概念及入门](sql/sql.md)
+
+[数据库：SQL 最佳实践](sql/sqlBestPractice.md)
+
+[数据库：如何使用 SQLite](sql/sqlite.md)
+
+[通用数据交换格式：JSON](basic/json.md)
+
+[通用数据交换格式：XML](basic/xml.md)
+
+[通用数据交换格式：TOML](general/toml.md)	
 
 
-## 产品设计
+
+## iOS开发
+
+### 产品设计
 
 [产品原型制作：Sketch 软件的使用总结](design/sketch.md)
 
 [应用程序设计：UX / IxD/ UI Desgin（思维导图）](design/images/APPDesign.png) 
 
-
-
-## 移动开发（iOS）
-
-### iOS 开发基础
+### 编程基础
 
 [IDE：如何使用 Xcode 开发应用](ios/swift/xcode.md) 
 
@@ -54,6 +76,8 @@
 
 [键值编码 KVC](ios/objc/kvc.md)
 
+[Tips](tips/tips.md)
+
 ### 官方框架
 
 [Apple 官方框架：声明式 UI 框架 SwiftUI](ios/swift/swiftui.md)
@@ -68,7 +92,7 @@
 
 [Apple 官方框架：App Tracking Transparency](ios/swift/AppTrackingTransparency.md)
 
-### 第三方框架
+### 开源库
 
 [依赖管理：使用依赖管理工具（Dependency Manager）管理第三方库](ios/swift/dependencyManager.md)
 
@@ -77,32 +101,6 @@
 [第三方库：使用 SnapKit 实现自动布局](ios/swift/snapkit.md) 
 
 [第三方库：使用 BetterSafariView 在应用内打开网站](ios/swift/BetterSafariView.md) 
-
-
-
-## 其他编程语言
-
-[编程语言：面向对象的 C++](langs/cpp/cpp.md)
-
-[编程语言：系统编程语言 Rust](langs/rust/rust.md)
-
-[编程语言：Go](langs/golang/golang.md)
-
-
-
-## 数据存储及交换 
-
-[数据库：SQL 概念及入门](sql/sql.md)
-
-[数据库：SQL 最佳实践](sql/sqlBestPractice.md)
-
-[数据库：如何使用SQLite](sql/sqlite.md)
-
-[通用数据交换格式：JSON](basic/json.md)
-
-[通用数据交换格式：XML](basic/xml.md)
-
-[通用数据交换格式：TOML](general/toml.md)	
 
 
 
@@ -115,18 +113,6 @@
 [JavaScript = ES6，DOM，BOM](web/JavaScript 基础.md) 
 
 [React](web/react.md)
-
-
-
-## 工具及技巧
-
-[分布式版本控制软件 Git](tools/git.md)
-
-[了解和使用文本编辑器 Vim](tools/vim.md) 
-
-[了解和使用文本编辑器 Emacs](tools/emacs.md) 
-
-[Tips](tips/tips.md)
 
 
 

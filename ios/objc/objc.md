@@ -1,147 +1,6 @@
 ## Objective-C
 
-### 基本概念
 
-```objc
-#import <Foundation/Foundation.h>		// Import system header file
-
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        NSLog(@"Hello World"); 			
-    }
-    return 0;							
-}//helloworld.m
-```
-
-#### 对象（object）
-
-Objective-C 通过**对象（object）**存储并传递数据，每一个 Objective-C 对象都占据着某个内存区域。
-
-#### 消息传递（Messaging）
-
-Objective-C 采用 **消息结构**（messaging structure），对象之间互相传递消息。消息传递是指在对象之间传递数据并执行任务的过程。方法调用（消息发送）采用方括号`[ ]`运算符。
-
-#### 运行期环境（ runtime）
-
-应用程序开始运行后为其提供相关支持的代码，Runtime提供了一些使得对象之间能够传递消息的重要函数，且包含创建类实例所用的全部逻辑。
-
-#### 动态运行时
-
-Objective-C 在运行时才会检查对象类型。接收一条消息后，究竟应执行什么代码，由运行期环境决定。一个类别不保证一定会回应收到的消息，如果类别收到了一个无法处理的消息，程序只会抛出异常，不会出错或崩溃。
-
-#### 动态绑定（dynamic binding）
-
-使用消息结构的语言，其运行时所执行的代码由运行环境决定，即不论是否多态，总在运行时才去查找所有执行的方法。编译器不关心接收消息的对象是什么类型，接收消息的对象问题也要在运行时处理，其过程就叫**动态绑定**。Objective-C 天生即具备动态绑定能力，因为运行期才处理消息，允许发送未知消息给对象。
-
-#### 运行期组件（runtime component）
-
-一种与开发者编写的代码相链接的动态库（dynamic library），使用 Objective-C的面向对象特性的全部数据结构及函数都在运行期组件里面。运行期组件能将开发者编写的所有代码粘合起来。
-
-#### 类声明和实现分离
-
-- **接口（.h文件）**
-
-  类为对象提供的特性描述，内容包括类的@interface 指令、公共 struct 定义、enum常量、#defines 和 extern 全局变量。
-
-  ```objc
-  #import "AnyHeaderFile.h"	
-  @interface ClassName: SuperClass
-      
-      // define public properties
-      // define public methods
-  
-  @end
-  ```
-
-- **实现（.m文件）**
-
-  使接口能够正常工作的代码，内容包括@implementation 指令、全局变量的定义、私有 struct 等。
-
-  ```objc
-  //	Class Implementation(.m)
-  @interface ClassName ()
-  	//	define private properties
-  	//	define private methods
-  @end
-  
-  #import "YourClassName.h"
-  @implementation	{
-      //	define private instance variables
-  }
-      //	implement methods
-  @end
-  ```
-
-  
-
-#### 属性(Properties)
-
-属性用于简化对成员变量的访问，因为通过 getter 和 setter 方法访问成员变量比较麻烦。
-
- Property automatically defines a private variable ( `type _propertyName;`), you can use the private variable directly with `_propertyName`.
-
- Property also automatically create a getter ( `-(type)propertyName;` ) and setter ( `-(void)setPropertyName: (type) name;`). You can use the getter / setter with `self.propertyName`.
-
-```objective-c
-// Define properties
-@property (attribute1, attribute2) type propertyName; 
-
-// set or get properties by dot syntax (recommended)
-myObject.propertyName = a;		
-b = myObject.propertyName;	
-
-// setter or getter
-[myObject setPropertyName:a];	
-b = [myObject PropertyName];
-```
-
-| Attributes | Description                        |
-| ---------- | ---------------------------------- |
-| strong     | add reference to keep object alive |
-| weak       | object can diappear, become nil    |
-| assign     | normal assign, no reference        |
-| copy       | make copy on assign                |
-| atomic     | threadsafe                         |
-| nonatomic  | non-threadsafe, better performance |
-| readwrite  | create getter and setter (default) |
-| readonly   | create just getter                 |
-
-
-
-#### #import
-
-Objective-C使用头文件来包含结构体、符号常量和函数原型等元素的声明。使用`#import`导入头文件 ，可以保证同一个头文件仅被导入一次。
-
-- `#import <Foundation/Foundation.h>`：导入系统头文件
-- `#import "MyHeaderFile.h”`：导入项目本地的头文件
-
-导入头文件是头文件和源文件之间建立了**依赖**关系。由于依赖关系会传递，可能导致重新编译的时间变长，也可能产生循环依赖。因此 Objective-C使用`@class`创建了一个**前向引用**，告诉编译器某个类的类名。因为编译器有时候只需要知道某个类的类名。
-
-| 文件扩展名 | 说明                                                   | 补充     |
-| ---------- | ------------------------------------------------------ | -------- |
-| `.h`       | 头文件（类、类型、函数和常数的声明）                   | 类的声明 |
-| `.m`       | 源代码文件（Objective-C 代码和 C代码），m 代表 message | 类的实现 |
-| `.mm`      | 源代码文件（Objective-C++代码）                        | 类的实现 |
-
-#### 框架（Framework）
-
-框架是一种把头文件、库、图片、声音等内容聚集在一个独立单元中的集合体。每个框架都是一个重要的技术集合，通常包含数十个甚至上百个头文件。通过在主头文件中使用#import，就可以访问框架内的所有功能。
-
-Cocoa 由 Foundation 和 ApplicationKit（AppKit）组成，而 Cocoa Touch  Foundation 和 ApplicationKit（AppKit）组成。另外还有一些支持型框架，如 Core Animation 和 Core Image 等。
-
-Foundation 框架处理的是用户界面之下的那些层（Layer）的特性，如数据结构和通信机制。通过查看 Headers目录，就可以知道 Foundation 框包含了哪些头文件。使用`#import <Foundation/Foundation.h>`来包含主头文件，就能获得整个集合。Xcode 会使用预编译头文件（一种经过压缩的、摘要形式的头文件）来加快读取速度。
-
-
-
-### NSLog 函数
-
-相比 C语言的 printf()，NSLog 添加了时间戳、日期戳和自动换行符（`'\n'`）等。
-
-NS 前缀来源于 Cocoa 的前身 NextStep，表明函数来自 Cocoa 工具包，用于避免名称冲突。由于 Cocoa 已经占用了 NS 前缀，所以自定义的任何变量和函数前不能使用 NS 前缀，以免混淆。
-
-### @“字符串”
-
-@符号表明引号内的字符串应该作为 Cocoa的 NSString元素来处理，NSString 即 Cocoa 中的字符串。
 
 
 
@@ -308,13 +167,59 @@ NSObject is the root class of most Objective-C class hierarchies.
 
 
 
-## Memory Management
+## 内存管理（Memory Management）
+
+### 内存管理（Memory Management）
+
+Objective-C's memory management system is called **reference counting**. You need to keep track of your references, and the runtime does the actual freeing of memory for you. 
+
+In simplest terms, you *alloc* an object, maybe *retain* it at some point, then send one *release* for each alloc/retain you sent. So if you used alloc once and then retain once, you need to release twice.
+
+If you create an object using the manual *`alloc`* style, you need to *`release`* the object later. 
+
+```objective-c
+// string1 will be released automatically
+NSString* string1 = [NSString string];
+
+// must release this when done
+NSString* string2 = [[NSString alloc] init];
+[string2 release];
+```
+
+#### Init
+
+```objective-c
+- (id) init
+{
+    if ( self = [super init] )
+    {
+        [self setCaption:@"Default Caption"];
+        [self setPhotographer:@"Default Photographer"];
+    }
+    return self;
+}
+```
+
+
+
+#### Dealloc
+
+```objective-c
+- (void) dealloc
+{
+    [caption release];
+    [photographer release];
+    [super dealloc];
+}
+```
 
 Objective-C是面向对象的C语言，C 和 C++语句均可出现在Objective-C代码中，可以调用 C 函数，也可通过 C++对象访问方法。
 
 理解 C语言的内存模型（memory model），有助于理解Objective-C的内存模型和引用计数（reference count）机制的工作原理。指针是 C语言的精髓，也是理解内存模型的关键。Objective-C 中的指针是用来指示对象的，即所有对象都是指针的形式。
 
 对栈和堆的内存管理不同。分配在栈上用于保存变量的内存则会在其栈帧弹出时自动清理。而对象所占内存总是分配在堆空间（heap space），分配在堆中的内存必须直接管理。Objective-C运行期环境将堆内存管理抽象成一套名为引用计数的内存管理架构。
+
+
 
 ### Pointer and Memory Model in C
 
@@ -328,21 +233,25 @@ Objective-C是面向对象的C语言，C 和 C++语句均可出现在Objective-C
 
 
 
-## Framework
+## 框架（Framework）
 
-- **Cocoa** includes **Foundation** and **AppKit,** **Cocoa Touch** includes Foundation and**UIKit**.
+框架（Framework）是一种把头文件、库、图片、声音等内容聚集在一个独立单元中的集合体。每个框架都是一个重要的技术集合，通常包含数十个甚至上百个头文件。通过在主头文件中使用`#import`，就可以访问框架内的所有功能。
 
-- **CoreGrapgics**
+- Cocoa 由 Foundation 和 ApplicationKit（AppKit）组成
+- Cocoa Touch  Foundation 和 UIKit 组成
+- 支持型框架(如 CoreGrapgics、Core Animation 和 Core Image 等)。
 
-- **CoreImage**
+### Foundation 框架
 
-- **CoreAnimation**
+Foundation 框架处理的是用户界面之下的那些层（Layer）的特性，如数据结构和通信机制。
 
-  
+通过查看 Headers目录，就可以知道 Foundation 框包含了哪些头文件。使用`#import <Foundation/Foundation.h>`来包含主头文件，就能获得整个集合。Xcode 会使用预编译头文件（一种经过压缩的、摘要形式的头文件）来加快读取速度。
 
-### Foundation
+**NS 前缀**来源于 Cocoa 的前身 NextStep，表明函数来自 Cocoa 工具包，用于避免名称冲突。由于 Cocoa 已经占用了 NS 前缀，所以自定义的任何变量和函数前不能使用 NS 前缀，以免混淆。
 
-- NSRange
+
+
+- **NSRange**
 
 ```objc
 //	NSRange
@@ -356,210 +265,202 @@ typedef struct _NSRange
 NSRange range = NSMakeRange(42, 5 );
 ```
 
-- CGPoint, CGSize, CGRect
+- **CGPoint, CGSize, CGRect**
 
-  ```objc
-  struct CGPoint 
-  {
-      float x;
-      float y;
-  };//CGPoint
-  
-  struct CGSize
-  {
-    float width;
-    float height;
-  };//CGSize
-  
-  struct CGRect
-  {
-      CGPoint origin;
-      CGSize size;
-  };//CGRect
-  ```
+```objc
+struct CGPoint 
+{
+    float x;
+    float y;
+};//CGPoint
 
-- #### NSString
+struct CGSize
+{
+  float width;
+  float height;
+};//CGSize
 
-  ```objective-c
-  + (id) stringWithFormat: (NSString *) format, ...;
-  
-  - (NSUInteger) length;
-  
-  - (BOOL) isEqualToString: (NSString *) aString;
-  
-  /*Case Insensitive*/
-  - (NSComparisonResult) compare: ( NSString *) aString;	
-  
-  /*
-   *options: NSCaseInsensitiveSearch, NSLiteralSearch, NSNumericSearch (using bitwise-   	*OR)
-   */
-  - (NSComparisonResult) compare: ( NSString *) aString options: (NSStringCompareOptions) mask;	
-  
-  - (BOOL) hasPrefix: (NSString *) aString;
-  - (BOOL) hasSuffix: (NSString *) aString;
-  - (NSRange) rangeOfString: (NSString *) aString;
-  ```
+struct CGRect
+{
+    CGPoint origin;
+    CGSize size;
+};//CGRect
+```
 
-  ```objective-c
-  /*Example*/
-  NSString *distance;
-  distance = [NSString stringWithFormat:@"Your distance is %d m, %d cm", 2,6];
-  
-  NSUInteger length = [distance length];
-  ```
+- **NSString**
 
-  #### NSMutableString
+```objective-c
++ (id) stringWithFormat: (NSString *) format, ...;
 
-  ```objective-c
-  // Defenition
-  + (id) stringWithCapacity: (NSUInteger) capacity;
-  - (void) appendString: (NSString *) aString;
-  - (void) appendFormat: (NSString *) foramt, ...;
-  - (void) deleteCharactersInRange: (NSRange) aRange;
-  
-  /*Example*/
-  NSMutableString *string = [NSMutableString stringWithCapacity: 64];
-  [string appendString:@"Hi,"];
-  [string appendFormat:@"nice to meet you,%d", 42];
-  
-  ```
+- (NSUInteger) length;
 
-  
+- (BOOL) isEqualToString: (NSString *) aString;
 
-  #### NSArray, NSMutableArray, NSEnumerator and Fast Enumeration
+/*Case Insensitive*/
+- (NSComparisonResult) compare: ( NSString *) aString;	
 
-  ```objective-c
-  //	Create a new array (the latter is recommended)
-  NSArray *array = [NSArray aarayWithObjects:@"a",@"b",@"c",nil];
-  NSArray *array = @[@"a",@"b",@"c"]];
-  id *myObject = array[2];
-  
-  //	Methods
-  - (NSUInteger)count;
-  - (id)objectAtIndex: (NSUInteger)index;
-  - componentsSeparatedByString
-  - componentsJoinedByString
-      
-  //	Create a new mutable array using the following class method
-  + (id)arrayWithCapacity: (NSUInteger) numItems;
-  - (void) addObject: (id) object;
-  - (void) removeObjectAtIndex: (NSUInteger) index;
-      
-  //	Example
-  NSString *string = @"apple,pineapple,orange,peal,peach";
-  NSArray *chunks = [string componentSeperatedByString:@","];
-  string = [chunks componentJoinedByString:@"-"];
-  ```
+/*
+ *options: NSCaseInsensitiveSearch, NSLiteralSearch, NSNumericSearch (using bitwise-   	*OR)
+ */
+- (NSComparisonResult) compare: ( NSString *) aString options: (NSStringCompareOptions) mask;	
 
-  You can use `index`, `NSEnumerator` , `Fast Enumeration` and `Block` to  traverse a array.
+- (BOOL) hasPrefix: (NSString *) aString;
+- (BOOL) hasSuffix: (NSString *) aString;
+- (NSRange) rangeOfString: (NSString *) aString;
+```
 
-  ```objective-c
-  //	NSEnumerator
-  - (NSEnumerator *)objectEnumerator;
-  - NSEnumerator *firstEnumerator = [array objectEnumerator];
-  - NSEnumerator *secondEnumerator = [array reverseObjectEnumerator];
-  - (id) nextObject;
-  
-  //	Fast Enumeration (non-concurrent)
-  for (NSString *string in array)
-  {
-      NSLog(@"The element of array %@", string);
-  }
-  
-  //	Block (concurrent)
-  - (void)enumerateObjectsUsingBlock:(void (^)(id obj, NSUInteger idx, BOOL *stop))block;
-  [aaray enumerateObjectsUsingBlock:^(NSString *string, NSUInteger index, BOOL *stop){
-      NSLog(@"The element of array %@", string);
-  }];
-  ```
+```objective-c
+/*Example*/
+NSString *distance;
+distance = [NSString stringWithFormat:@"Your distance is %d m, %d cm", 2,6];
 
-  #### NSDictionary
+NSUInteger length = [distance length];
+```
 
-  ```objective-c
-  + (id) dictionaryWithObjectsAndKeys: (id)firstObject, ...);
-  - (id) objectForKey: (id) aKey;
-  + (id) dictionaryWithCapacity: (NSUInteger) numItems;
-  - (void) setObjectForKey:(id)anObject forKey:(id)aKey;
-  - (void) removeObjectForKey: (id)aKey;
-  ```
+- **NSMutableString**
 
-  #### NSNumber
+```objective-c
+// Defenition
++ (id) stringWithCapacity: (NSUInteger) capacity;
+- (void) appendString: (NSString *) aString;
+- (void) appendFormat: (NSString *) foramt, ...;
+- (void) deleteCharactersInRange: (NSRange) aRange;
 
-  ```objective-c
-  // Boxing - Create a new NSNumber object - 1
-  + (NSNumber *) numberWithInt: (int) value;
-  + (NSNumber *) numberWithFloat: (float) value;
-  + (NSNumber *) numberWithBool: (BOOL) value;
-  + (NSNumber *) numberWithChar: (char) value;
-  
-  // Boxing - Create a new NSNumber object Using literal - 2
-  NSNumber *number = @23;
-  number = @23ul;
-  number = @23ll;
-  number = @1.2345f;
-  number = @1.2345;
-  number = @NO;
-  number = @"H";
-  
-  // Unboxing
-  - (int) intValue;
-  ```
+/*Example*/
+NSMutableString *string = [NSMutableString stringWithCapacity: 64];
+[string appendString:@"Hi,"];
+[string appendFormat:@"nice to meet you,%d", 42];
 
-  #### NSValue
+```
 
-  
+- **NSArray, NSMutableArray, NSEnumerator 和 Fast Enumeration**
 
-  #### NSNull
+```objective-c
+//	Create a new array (the latter is recommended)
+NSArray *array = [NSArray aarayWithObjects:@"a",@"b",@"c",nil];
+NSArray *array = @[@"a",@"b",@"c"]];
+id *myObject = array[2];
 
-  ```objective-c
-  + (NSNull *) null;
-  ```
+//	Methods
+- (NSUInteger)count;
+- (id)objectAtIndex: (NSUInteger)index;
+- componentsSeparatedByString
+- componentsJoinedByString
+    
+//	Create a new mutable array using the following class method
++ (id)arrayWithCapacity: (NSUInteger) numItems;
+- (void) addObject: (id) object;
+- (void) removeObjectAtIndex: (NSUInteger) index;
+    
+//	Example
+NSString *string = @"apple,pineapple,orange,peal,peach";
+NSArray *chunks = [string componentSeperatedByString:@","];
+string = [chunks componentJoinedByString:@"-"];
+```
 
-  
+可以使用 `index`, `NSEnumerator` , `Fast Enumeration` 和 `Block` 遍历一个数组。
 
-  
+```objective-c
+//	NSEnumerator
+- (NSEnumerator *)objectEnumerator;
+- NSEnumerator *firstEnumerator = [array objectEnumerator];
+- NSEnumerator *secondEnumerator = [array reverseObjectEnumerator];
+- (id) nextObject;
 
-  ## 2.Data Type
+//	Fast Enumeration (non-concurrent)
+for (NSString *string in array)
+{
+    NSLog(@"The element of array %@", string);
+}
 
-  - **BOOL**
+//	Block (concurrent)
+- (void)enumerateObjectsUsingBlock:(void (^)(id obj, NSUInteger idx, BOOL *stop))block;
+[aaray enumerateObjectsUsingBlock:^(NSString *string, NSUInteger index, BOOL *stop){
+    NSLog(@"The element of array %@", string);
+}];
+```
 
-  ```c
-  typedef bool BOOL;	//Defines YES as 1, NO as 0
-  typedef signed char BOOL;	//	
-  
-  
-  // True on all platforms
-  - (bool)value {
-      return 256;
-  }
-  
-  if ([self value]) doStuff();
-  ```
+- **NSDictionary**
 
-  `BOOL` is actually `char`, it does not behave in the same way as a C `_Bool` value or a C++ *bool* value.
+```objective-c
++ (id) dictionaryWithObjectsAndKeys: (id)firstObject, ...);
+- (id) objectForKey: (id) aKey;
++ (id) dictionaryWithCapacity: (NSUInteger) numItems;
+- (void) setObjectForKey:(id)anObject forKey:(id)aKey;
+- (void) removeObjectForKey: (id)aKey;
+```
 
-  - **NSNumber**
+- **NSNumber**
 
-  ```c
-  //	iOS, macOS, Mac Catalyst, tvOS
-  typedef long NSInteger;	
-  typedef unsigned long NSUInteger;
-  
-  //	watchOS
-  typedef int NSInteger;	
-  typedef unsigned int NSUInteger;
-  ```
+```objective-c
+// Boxing - Create a new NSNumber object - 1
++ (NSNumber *) numberWithInt: (int) value;
++ (NSNumber *) numberWithFloat: (float) value;
++ (NSNumber *) numberWithBool: (BOOL) value;
++ (NSNumber *) numberWithChar: (char) value;
 
-  
+// Boxing - Create a new NSNumber object Using literal - 2
+NSNumber *number = @23;
+number = @23ul;
+number = @23ll;
+number = @1.2345f;
+number = @1.2345;
+number = @NO;
+number = @"H";
 
-  
+// Unboxing
+- (int) intValue;
+```
 
-### AppKit
+```c
+//	iOS, macOS, Mac Catalyst, tvOS
+typedef long NSInteger;	
+typedef unsigned long NSUInteger;
+
+//	watchOS
+typedef int NSInteger;	
+typedef unsigned int NSUInteger;
+```
+
+- **NSNull 和 NSValue**
+
+```objective-c
++ (NSNull *) null;
+```
+
+- **BOOL**
+
+```c
+typedef bool BOOL;	//Defines YES as 1, NO as 0
+typedef signed char BOOL;	//	
+
+
+// True on all platforms
+- (bool)value {
+    return 256;
+}
+
+if ([self value]) doStuff();
+```
+
+`BOOL` 实际上是 `char`类型，和 C/C++中布尔类型不一样。
 
 
 
-### UIKit
+### AppKit 框架
+
+
+
+### UIKit 框架
+
+
+
+## KVC
 
 
 
 保存、检索数据，分解数据，使用 KVC 间接处理数据
+
+
+
+## KVO
