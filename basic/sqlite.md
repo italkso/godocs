@@ -8,6 +8,16 @@
 
 最新版本的 macOS 预装了 SQLite，在命令行使用`sqlite3`命令可以验证。在出现的 SQLite 命令提示符 **sqlite>** 下，你就可以使用各种 SQLite 命令了。也就是说，所有的**点命令**只在 SQLite 提示符中可用。
 
+在使用 SQLite 命令前，我们先了解一下 [SQLite的架构](https://www.sqlite.org/arch.html)。
+
+<img src="images/Architecture_of_SQLite.png" alt="Architecture ofSQLite" style="zoom:50%;" />
+
+链接 https://www.sqlite.org/arch.html
+
+
+
+
+
 
 
 #### 1.1 命令

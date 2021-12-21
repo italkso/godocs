@@ -17,7 +17,7 @@ import LocalAuthentication
 @main
 struct MyReaderApp: App {
     @State var locked = true
-    
+
     var body: some Scene {
         WindowGroup {
             Group {
@@ -30,18 +30,18 @@ struct MyReaderApp: App {
             .onAppear { authorize() }
         }
     }
-    
+
     func authorize() {
         let context = LAContext()
         var error: NSError?
-        
+
         // If the device support Face ID or Touch ID
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Unlock the App") { result, _ in
-                
+
             }
         }
-        
+
     }
 }
 ```
@@ -53,7 +53,7 @@ import SwiftUI
 
 struct Locked: View {
     let authorize: () -> ()
-    
+
     var body: some View {
         VStack {
             Image(systemName: "lock.shield")
@@ -68,6 +68,3 @@ struct Locked: View {
     }
 }
 ```
-
-
-

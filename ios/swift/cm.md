@@ -12,11 +12,11 @@ import CoreMotion
 
 class MotionManager: ObservableObject {
     let motionManager = CMMotionManager()
-    
+
     @Published var x: CGFloat = 0
     @Published var y: CGFloat = 0
     @Published var z: CGFloat = 0
-    
+
     init() {
         motionManager.startDeviceMotionUpdates(to: .main) { data, _ in
             guard let tilt = data?.gravity else { return }
@@ -30,8 +30,6 @@ class MotionManager: ObservableObject {
 
 注：CM 是 Core Motion 框架的缩写，CGFloat 开头的 CG 代表 Core Graphics 框架。
 
-
-
 ### 向 SwiftUI 视图中添加传感器反馈
 
 手机的传感器信息可以作为整个应用的共享知识，放置在 MyApp.swift 中，作为一个环境变量来提供数据。
@@ -43,7 +41,7 @@ import SwiftUI
 struct MyApp: App {
     // MARK: - CoreMotion
     let motionManager = MotionManager()
-    
+
     var body: some Scene {
         WindowGroup {
             Master().environmentObject(motionManager)
@@ -57,4 +55,3 @@ struct MyApp: App {
 ```swift
 @EnvironmentObject var motion: MotionManager
 ```
-
